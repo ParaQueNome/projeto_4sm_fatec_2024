@@ -1,5 +1,7 @@
 from flask import Flask
 from config import Config
+from .models.conexao_mongo import Conexao
+
 
 
 
@@ -11,9 +13,17 @@ def create_app():
     #from app.auth import routes
 
     # Configurações opcionais da aplicação
-    config = Config('financia')
+    conexao = Config()
+    bd = Conexao(conexao,"teste")
+    data = {"nome": "guilherme"}
+    bd.insert("test", **data)
+    
 
-    config.db
+    
+
+    
+    
     
     return app
+
 
