@@ -1,6 +1,11 @@
 from flask import Flask
 from config import Config
-from .models.conexao_mongo import Conexao
+from app.models.Conexao_mongo import Conexao
+from app.repositories.ConexaoRepository import ConexaoRepository
+from .services.Login import SignUp
+from app.controller.auth import auth_bp
+
+
 
 
 
@@ -10,13 +15,10 @@ def create_app():
     app = Flask(__name__)
 
     # Importando as rotas da aplicação
-    #from app.auth import routes
+    app.register_blueprint(auth_bp, url_prefix='/auth')
 
     # Configurações opcionais da aplicação
-    conexao = Config()
-    bd = Conexao(conexao,"teste")
-    data = {"nome": "guilherme"}
-    bd.insert("test", **data)
+   
     
 
     
