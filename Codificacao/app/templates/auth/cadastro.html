@@ -2,13 +2,13 @@
 
 
 {%block title%}Cadastro{%endblock%}
-
 {%block content%}
     <h1>Formulario de cadastro</h1>
+
     <form method="POST">
         
         {% for field in form %}
-            {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
             <div class="form-group">
                 {{ field.label(class="form-label") }}
                 {{ field(class="form-control") }}

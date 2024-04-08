@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{%block title%}Cadastro{%endblock%}
+{%block content%}
+    
+
+    <h1>Login</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.email.label }}
+            {{ form.email(size=32, placeholder="Seu endereço de email") }}
+            {% for error in form.email.errors %}
+                <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.password.label }}
+            {{ form.password(size=32, placeholder="Sua senha") }}
+            {% for error in form.password.errors %}
+                <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+    
+
+{%endblock%}

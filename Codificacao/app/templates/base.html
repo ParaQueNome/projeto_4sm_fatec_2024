@@ -16,6 +16,15 @@
     <nav>
         <ul>
             <li><a href="/">Página Inicial</a></li>
+            <li><a href="">Controle Financeiro</a></li>
+            <li><a href="">Investimentos</a></li>
+            {% if sessions %}
+                <li>{{ sessions['usuarios']}}</li>
+                <li><a href="">Sair</a></li>
+            {%else%}
+                <li><a href="">Cadastro</a></li>
+                <li><a href="">Login</a></li>
+            {%endif%}
             <li><a href="/sobre">Sobre</a></li>
             <!-- Adicione mais itens de menu conforme necessário -->
         </ul>
