@@ -28,7 +28,7 @@ class Conexao:
         collection = self.db[collection_name]
         
 
-        return collection.find(kwargs)
+        return collection.find_one(kwargs)
         
     
     
