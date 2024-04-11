@@ -1,31 +1,28 @@
 {% extends 'base.html' %}
 
-
-{%block title%}Cadastro{%endblock%}
-{%block content%}
-    
+{% block title %}Cadastro{% endblock %}
+{% block content %}
 
     <h1>Login</h1>
     <form method="POST">
-        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
         <div>
             {{ form.email.label }}
-            {{ form.email(size=32, placeholder="Seu endereço de email") }}
+            {{ form.email(class="form-control") }} {# Adiciona a classe form-control do Bootstrap para estilização #}
             {% for error in form.email.errors %}
                 <p style="color: red;">{{ error }}</p>
             {% endfor %}
         </div>
         <div>
             {{ form.password.label }}
-            {{ form.password(size=32, placeholder="Sua senha") }}
+            {{ form.password(class="form-control") }} {# Adiciona a classe form-control do Bootstrap para estilização #}
             {% for error in form.password.errors %}
                 <p style="color: red;">{{ error }}</p>
             {% endfor %}
         </div>
         <div>
-            {{ form.submit() }}
+            {{ form.submit(class="btn btn-primary") }} {# Adiciona a classe btn btn-primary do Bootstrap para estilização #}
         </div>
     </form>
-    
 
-{%endblock%}
+{% endblock %}

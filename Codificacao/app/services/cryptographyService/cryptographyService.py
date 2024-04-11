@@ -11,3 +11,11 @@ class CryptographyService:
         key = self.crypto.generateKey()
         encryptedPassword = self.crypto.encryptText(hashPassword, key)
         return encryptedPassword, key
+    
+    def decryptPassword(self, encryptedPassword, key):
+        decryptedPassword = self.crypto.decryptText(encryptedPassword, key)
+        return decryptedPassword
+    
+    def hashConfirmPassword(self, password):
+       return self.crypto.hashPassword(password)
+        

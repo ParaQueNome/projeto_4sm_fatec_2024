@@ -27,8 +27,8 @@ class AuthenticationForm(FlaskForm):
         conexao = Conexao(Config(),"Financia")
         conexaoRepository = ConexaoRepository(conexao)
         data = {"email": email.data}
-        conexaoRepository.select("usuario", **data)
-        if(conexaoRepository):
+        result = conexaoRepository.select("usuario", **data)
+        if(result):
             raise ValidationError('Email já cadastrado')
         if not re.search(r'@', email.data):
             raise ValidationError('Email deve conter "@".')

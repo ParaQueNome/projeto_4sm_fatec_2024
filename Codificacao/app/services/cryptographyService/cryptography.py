@@ -15,6 +15,7 @@ class Cryptography:
     def decryptText(self,encrypted_text, key):
         cipher_suite = Fernet(key)
         return cipher_suite.decrypt(encrypted_text).decode()
+    
 
     # Função para criar um hash seguro de uma senha
     def hashPassword(self,password):
