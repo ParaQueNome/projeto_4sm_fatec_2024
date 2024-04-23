@@ -1,5 +1,6 @@
 from flask import Flask
 from app.controller.authControl import auth_bp
+from app.services.opeaiApi.openaiApi import OpenAiClient
 
 def create_app():
     # Criando instancia da aplicação Flask com o nome da aplicação
@@ -10,6 +11,8 @@ def create_app():
 
     # Configurações opcionais da aplicação
     app.config['SECRET_KEY'] = 't%23s342%%@'
+    chat = OpenAiClient()
+    chat.get_response()
    
     return app
 
