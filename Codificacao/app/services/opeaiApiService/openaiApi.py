@@ -15,8 +15,9 @@ class OpenAiClient:
         answer = self.openai.chat.completions.create(
             model = "gpt-3.5-turbo",
             messages= messages,
-            max_tokens= 100,
+            max_tokens= 200,
             temperature = 0.6
         )
+        messages.append({'role': 'assistant', 'content': answer.choices[0].message.content})
         return answer.choices[0].message.content
     
