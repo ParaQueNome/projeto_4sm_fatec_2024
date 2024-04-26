@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 class OpenAiClient:
     def __init__(self):
         load_dotenv()
-        self.openai = OpenAI(api_key= os.getenv("OPENAI_API_KEY"))
+        self.openai = OpenAI(api_key= os.getenv("API_KEY"))
 
     def userFinances(self, renda, **despesa):
         messages =  [
@@ -15,7 +15,7 @@ class OpenAiClient:
         answer = self.openai.chat.completions.create(
             model = "gpt-3.5-turbo",
             messages= messages,
-            max_tokens= 200,
+            max_tokens= 400,
             temperature = 0.6
         )
         messages.append({'role': 'assistant', 'content': answer.choices[0].message.content})
