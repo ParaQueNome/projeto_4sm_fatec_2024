@@ -22,14 +22,14 @@
     <nav>
         <ul>
             <li><a href="/">Página Inicial</a></li>
-            <li><a href="">Controle Financeiro</a></li>
+            <li><a href="{{ url_for('finance.finance') }}">Controle Financeiro</a></li>
             <li><a href="">Investimentos</a></li>
             {% if 'usuario' in session and session['usuario'] != "" %}
                 <li>{{ session['usuario'] }}</li>
                 <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
             {%else%}
                 <li><a href="{{url_for('auth.cadastro')}}">Cadastrar</a></li>
-                <li><a href="">Login</a></li>
+                <li><a href="{{url_for('auth.login')}}">Login</a></li>
             {%endif%}
             <li><a href="/sobre">Sobre</a></li>
             <!-- Adicione mais itens de menu conforme necessário -->

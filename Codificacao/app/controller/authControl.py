@@ -10,7 +10,6 @@ from app.services.cryptographyService.cryptographyService import CryptographySer
 from app.services.cryptographyService.cryptography import Cryptography
 from app.services.authenticationService.login import Login
 from flask import url_for
-from app.services.authenticationService.session import SessionManager
 from flask import session
 from app.services.opeaiApiService.openaiApi import OpenAiClient
 
@@ -49,5 +48,9 @@ def login():
 
 @auth_bp.route('/logout', methods=['GET', 'POST'])
 def logout():
-    SessionManager().close_session()
-    return redirect(url_for('auth.login'))
+    if session.get('usuario'):
+        conexao = Conexao(Config(), "Financia")
+        conexaoRepository = ConexaoRepository(conexao)
+        crypto = CryptographyService(Cryptography())
+        Login(conexaoRepository, crypto).signOut()
+        return redirect(url_for('auth.login'))
