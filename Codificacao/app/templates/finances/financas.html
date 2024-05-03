@@ -5,45 +5,90 @@
     <h1>Formulário de cadastro</h1>
 
     {% if finanService %}
-        {{finanService.label}}
+        <table class="table" id="tabela-despesas">
+            <thead>
+                <tr>
+                    <th scope="col">Mês</th>
+                    <th scope="col">Janeiro</th>
+                    <th scope="col">Fevereiro</th>
+                    <th scope="col">Março</th>
+                    <th scope="col">Abril</th>
+                    <th scope="col">Maio</th>
+                    <th scope="col">Junho</th>
+                    <th scope="col">Julho</th>
+                    <th scope="col">Agosto</th>
+                    <th scope="col">Setembro</th>
+                    <th scope="col">Outubro</th>
+                    <th scope="col">Novembro</th>
+                    <th scope="col">Dezembro</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Linha da Renda -->
+                <tr id="linha-renda">
+                    <td scope="row">Renda</td>
+                    <td></td> <!-- Janeiro -->
+                    <td></td> <!-- Fevereiro -->
+                    <td></td> <!-- Março -->
+                    <td></td> <!-- Abril -->
+                    <td></td> <!-- Maio -->
+                    <td></td> <!-- Junho -->
+                    <td></td> <!-- Julho -->
+                    <td></td> <!-- Agosto -->
+                    <td></td> <!-- Setembro -->
+                    <td></td> <!-- Outubro -->
+                    <td></td> <!-- Novembro -->
+                    <td></td> <!-- Dezembro -->
+                </tr>
+                <!-- Linhas das despesas -->
+                <!-- Cada nova despesa será adicionada aqui -->
+                    {{finanService.label}}
+            </tbody>
+        </table>
     {% else %}
         <p>Nada Cadastrado no momento</p>
     {% endif %}
+    {% if answer %}
+        {% set paragraphs = answer.split("\n") %}
+            {% for paragraph in paragraphs %}
+                {{ paragraph }} <br>
+            {% endfor %}
+        {% endif %}
+        
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Exemplo de Modal</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Despesas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
-                <div class="modal-body">
-                    <h2>Formulário de cadastro no modal</h2>
-                    <form method="POST">
-                        {% for field in form %}
-                            {{ field.label(class="form-label") }}
-                            {{ field(class="form-control") }}
-                            {% if field.errors %}
-                                <ul class="errors">
-                                    {% for error in field.errors %}
-                                        <li>{{ error }}</li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
+                <div class="modal-body" action="finance.finance">
+                    <form method="POST" action="{{url_for('finance.finance')}}">
+                        {% for field in form if field.name != 'csrf_token' %}
+                                {{ field.label(class="form-label") }}
+                                {{ field(class="form-control") }}
+                                {% if field.errors %}
+                                    <ul class="errors">
+                                        {% for error in field.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
                         {% endfor %}
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Adicionar despesa</button>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Adicionar despesa</button>
-                </div>
+                
             </div>
         </div>
     </div>
 
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Abrir Modal
+        Adicionar Nova Despesa
     </button>
 
 {% endblock %}

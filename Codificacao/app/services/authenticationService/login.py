@@ -23,4 +23,7 @@ class Login:
                 return True
             
             return False
+        
+    def signOut(self):
+        session.clear()
     
