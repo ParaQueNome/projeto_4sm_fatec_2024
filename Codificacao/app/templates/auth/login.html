@@ -23,6 +23,15 @@
         <div>
             {{ form.submit(class="btn btn-primary") }} {# Adiciona a classe btn btn-primary do Bootstrap para estilização #}
         </div>
+        {% if answer %}
+        {% set paragraphs = answer.split("\n") %}
+            {% for paragraph in paragraphs %}
+                {{ paragraph }} <br>
+            {% endfor %}
+        {% endif %}
+
+
+    
     </form>
 
 {% endblock %}

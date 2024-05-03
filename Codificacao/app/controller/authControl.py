@@ -10,16 +10,14 @@ from app.services.cryptographyService.cryptographyService import CryptographySer
 from app.services.cryptographyService.cryptography import Cryptography
 from app.services.authenticationService.login import Login
 from flask import url_for
-from app.services.authenticationService.session import SessionManager
 from flask import session
+from app.services.opeaiApiService.openaiApi import OpenAiClient
 
 
 auth_bp = Blueprint('auth', __name__, template_folder='templates/auth')
 
 @auth_bp.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
-    if not session['usuario']:
-        return redirect(url_for('auth.login'))
     form = AuthenticationForm()
     if form.validate_on_submit():
         data = form.data
@@ -40,11 +38,19 @@ def login():
         conexaoRepository = ConexaoRepository(conexao)
         crypto = CryptographyService(Cryptography())
         login = Login(conexaoRepository, crypto)
+        
+        
         if(login.signIn(data)):
             return redirect(url_for('auth.cadastro'))
-        
+    #chat = OpenAiClient()
+    #anwer = chat.userFinances(1500, **{'energia': 100, 'agua': 50, 'luz': 50, 'netflix': 25, 'faculdade':1200}) 
     return render_template('auth/login.html', form=form)
+
 @auth_bp.route('/logout', methods=['GET', 'POST'])
 def logout():
-    SessionManager().close_session()
-    return redirect(url_for('auth.login'))
+    if session.get('usuario'):
+        conexao = Conexao(Config(), "Financia")
+        conexaoRepository = ConexaoRepository(conexao)
+        crypto = CryptographyService(Cryptography())
+        Login(conexaoRepository, crypto).signOut()
+        return redirect(url_for('auth.login'))

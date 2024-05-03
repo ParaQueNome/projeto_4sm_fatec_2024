@@ -20,4 +20,7 @@ class ConexaoRepository:
 
     def select(self, collection_name, **kwargs):
         return self.conexao.select(collection_name, **kwargs)
+    
+    def insertDespesas(self, collection_name,condicao, **kwargs):
+        return self.conexao.insertDespesas(collection_name, condicao, **kwargs)
         
