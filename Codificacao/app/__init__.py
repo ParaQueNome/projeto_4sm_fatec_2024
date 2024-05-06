@@ -1,9 +1,9 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap5
-from flask_login import LoginManager
 from app.controller.authControl import auth_bp
 from app.controller.financeControl import financeBp
 from app.services.opeaiApiService.openaiApi import OpenAiClient
+from flask_wtf.csrf import CSRFProtect
 
 def create_app():
     # Criando instancia da aplicação Flask com o nome da aplicação
@@ -15,6 +15,5 @@ def create_app():
 
     # Configurações opcionais da aplicação
     app.config['SECRET_KEY'] = 't%23s342%%@'
-    
+    csrf = CSRFProtect(app)
     return app
-

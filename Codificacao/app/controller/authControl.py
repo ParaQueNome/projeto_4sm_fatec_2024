@@ -20,7 +20,7 @@ auth_bp = Blueprint('auth', __name__, template_folder='templates/auth')
 def cadastro():
     form = AuthenticationForm()
     if form.validate_on_submit():
-        data = form.data
+        data = {key: value for key, value in form.data.items() if key not in ['csrf_token', 'submit']}
         conexao = Conexao(Config(),"Financia")
         conexaoRepository = ConexaoRepository(conexao)
         crypto = CryptographyService(Cryptography())
@@ -33,15 +33,7 @@ def cadastro():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        data = form.data
-        conexao = Conexao(Config(), "Financia")
-        conexaoRepository = ConexaoRepository(conexao)
-        crypto = CryptographyService(Cryptography())
-        login = Login(conexaoRepository, crypto)
-        
-        
-        if(login.signIn(data)):
-            return redirect(url_for('auth.cadastro'))
+        return redirect(url_for('finance.finance'))
     #chat = OpenAiClient()
     #anwer = chat.userFinances(1500, **{'energia': 100, 'agua': 50, 'luz': 50, 'netflix': 25, 'faculdade':1200}) 
     return render_template('auth/login.html', form=form)

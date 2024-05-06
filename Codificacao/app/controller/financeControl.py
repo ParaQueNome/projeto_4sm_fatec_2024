@@ -22,13 +22,15 @@ def finance():
     if request.method == 'POST':
         if form.validate_on_submit():
             data = form.data
-            finanService.cadastrarFinancas(data, session.get('usuario'))
-        return redirect(url_for('finance.finance'))
-    
-    try:
-        despesas = finanService.exibirFinancas(session.get('usuario'))
-        api = OpenAiClient()
-        answer = api.userFinances(1500, **despesas)
-        return render_template('finances/financas.html', form = form, finanService = despesas, answer = answer)
-    except:
-        return render_template('finances/financas.html', form = form)
+            finanService.inserirGastos(session.get('email'),data)
+        else:
+            print('ta vindo pra ca', form.errors)
+            return render_template('finances/financas.html', form = form)
+    else:
+        try:
+            despesas = finanService.exibirFinancas(session.get('email'))
+            api = OpenAiClient()
+            answer = api.userFinances(1500, **despesas)
+            return render_template('finances/financas.html', form = form, finanService = despesas, answer = answer)
+        except:
+            return render_template('finances/financas.html', form = form)

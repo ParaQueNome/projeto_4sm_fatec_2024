@@ -11,12 +11,16 @@ class Login:
 
     def signIn(self, data):
         data_email = {'email': data['email']}
+        print(data_email)
         dados = self.conexao.select('usuario', **data_email)
+        print(dados)
         if dados:
             hashPassword = dados['password']
             key = dados['key']
             decrypetdPassword = self.crypt.decryptPassword(hashPassword,key)
             confirPass = self.crypt.hashConfirmPassword(data['password'])
+            print(confirPass)
+            print(decrypetdPassword)
             if confirPass == decrypetdPassword:
                 session['usuario'] = dados['username']
                 session['email'] = dados['email']

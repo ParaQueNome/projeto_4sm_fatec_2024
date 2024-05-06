@@ -6,21 +6,41 @@
     <h1>Formulario de cadastro</h1>
 
     <form method="POST">
-        
-        {% for field in form %}
-            {{ form.csrf_token }}
-            <div class="form-group">
-                {{ field.label(class="form-label") }}
-                {{ field(class="form-control") }}
-                {% if field.errors %}
-                    <ul class="errors">
-                        {% for error in field.errors %}
-                            <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </div>
-        {% endfor %}
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control") }}
+            {% if form.username.errors %}
+                <ul class="errors">
+                    {% for error in form.username.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+            {% if form.email.errors %}
+                <ul class="errors">
+                    {% for error in form.email.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control") }}
+            {% if form.password.errors %}
+                <ul class="errors">
+                    {% for error in form.password.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
     </form>
     
 

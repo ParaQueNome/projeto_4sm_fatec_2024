@@ -64,18 +64,45 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body" action="finance.finance">
-                    <form method="POST" action="{{url_for('finance.finance')}}">
-                        {% for field in form if field.name != 'csrf_token' %}
-                                {{ field.label(class="form-label") }}
-                                {{ field(class="form-control") }}
-                                {% if field.errors %}
-                                    <ul class="errors">
-                                        {% for error in field.errors %}
-                                            <li>{{ error }}</li>
-                                        {% endfor %}
-                                    </ul>
-                                {% endif %}
-                        {% endfor %}
+                    <form method="POST" action="{{ url_for('finance.finance') }}">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="form-group">
+                            {{ form.renda.label(class="form-label") }}
+                            {{ form.renda(class="form-control") }}
+                            {% if form.renda.errors %}
+                                <ul class="errors">
+                                    {% for error in form.renda.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.nome_gasto.label(class="form-label") }}
+                            {{ form.nome_gasto(class="form-control") }}
+                            {% if form.nome_gasto.errors %}
+                                <ul class="errors">
+                                    {% for error in form.nome_gasto.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.valor.label(class="form-label") }}
+                            {{ form.valor(class="form-control") }}
+                            {% if form.valor.errors %}
+                                <ul class="errors">
+                                    {% for error in form.valor.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                             <button type="submit" class="btn btn-primary">Adicionar despesa</button>
