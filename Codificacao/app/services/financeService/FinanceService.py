@@ -6,14 +6,18 @@ class FinanceService:
         self.conexao = conexaoRepository
 
     def inserirGastos(self, email, data):
-        print(email)
-        condicao = self.conexao.select('usuario', email)
-        self.conexao.insertDespesas('usuario',condicao,**data)
+        data_email = {'email':email}
+        condicao = self.conexao.select('usuario', **data_email)
+        vetor = {'despesas': data}
+        self.conexao.insertDespesas('usuario',condicao,**vetor)
 
-    def exibirFinancas(self, usuario):
-        dados = self.conexao.select('usuario', **usuario)
-        return dados
+    def exibirFinancas(self, email):
+        data_email = {'email':email}
+        dados = self.conexao.select('usuario', **data_email)
+        return dados['despesas']
 
     def totalGastos(self, usuario):
         dados = self.conexao.select("usuario", **usuario)
-        return dados
+        for despesas in dados['despesas']:
+            total = despesas['valor'] + total
+        return total

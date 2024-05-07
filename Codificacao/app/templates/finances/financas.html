@@ -2,49 +2,73 @@
 
 {% block title %}Cadastro{% endblock %}
 {% block content %}
-    <h1>Formulário de cadastro</h1>
+    <h1>Sua DRE Pessoal</h1>
 
     {% if finanService %}
-        <table class="table" id="tabela-despesas">
-            <thead>
+    <div class="container mt-4">
+        <h1 class="text-center">Demonstração de Resultado do Exercício Pessoal</h1>
+        <table class="table">
+            <thead class="thead-light">
                 <tr>
-                    <th scope="col">Mês</th>
-                    <th scope="col">Janeiro</th>
-                    <th scope="col">Fevereiro</th>
-                    <th scope="col">Março</th>
-                    <th scope="col">Abril</th>
-                    <th scope="col">Maio</th>
-                    <th scope="col">Junho</th>
-                    <th scope="col">Julho</th>
-                    <th scope="col">Agosto</th>
-                    <th scope="col">Setembro</th>
-                    <th scope="col">Outubro</th>
-                    <th scope="col">Novembro</th>
-                    <th scope="col">Dezembro</th>
+                    <th scope="col">Receitas</th>
+                    <th scope="col">Valor (R$)</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Linha da Renda -->
-                <tr id="linha-renda">
-                    <td scope="row">Renda</td>
-                    <td></td> <!-- Janeiro -->
-                    <td></td> <!-- Fevereiro -->
-                    <td></td> <!-- Março -->
-                    <td></td> <!-- Abril -->
-                    <td></td> <!-- Maio -->
-                    <td></td> <!-- Junho -->
-                    <td></td> <!-- Julho -->
-                    <td></td> <!-- Agosto -->
-                    <td></td> <!-- Setembro -->
-                    <td></td> <!-- Outubro -->
-                    <td></td> <!-- Novembro -->
-                    <td></td> <!-- Dezembro -->
+                <!-- Iterar sobre as receitas -->
+                {% for item in finanService %}
+                    {% if item.renda %}
+                        <tr>
+                            <td>{{ item.renda }}</td>
+                            <td>{{ item.valor }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                <!-- Calcular total de receitas -->
+                {% set total_receitas = finanService | map(attribute='valor') | map('int') | sum %}
+                <tr class="font-weight-bold">
+                    <td>Total de Receitas</td>
+                    <td>{{ total_receitas }}</td>
                 </tr>
-                <!-- Linhas das despesas -->
-                <!-- Cada nova despesa será adicionada aqui -->
-                    {{finanService.label}}
+                
             </tbody>
         </table>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            +
+        </button>
+        
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Despesas</th>
+                    <th scope="col">Valor (R$)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterar sobre as despesas -->
+                {% for item in finanService %}
+                    {% if item.nome_gasto %}
+                        <tr>
+                            <td>{{ item.nome_gasto }}</td>
+                            <td>{{ item.valor }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                <!-- Calcular total de despesas -->
+                {% set total_despesas = finanService | map(attribute='valor') | map('int') | sum %}
+                <tr class="font-weight-bold">
+                    <td>Total de Despesas</td>
+                    <td>{{ total_despesas }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            +
+        </button>
+        <!-- Cálculo do Lucro/Prejuízo -->
+        <h2 class="mt-4">Resultado</h2>
+        <p>Lucro/Prejuízo: <span class="font-weight-bold text-primary">{{ total_receitas - total_despesas }}</span></p>
+    </div>
     {% else %}
         <p>Nada Cadastrado no momento</p>
     {% endif %}
