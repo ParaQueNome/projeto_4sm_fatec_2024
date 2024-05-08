@@ -19,19 +19,11 @@ def finance():
     conexao = Conexao(Config(),'Financia')
     connRepository = ConexaoRepository(conexao) 
     finanService = FinanceService(connRepository)
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            data = form.data
-            finanService.inserirGastos(session.get('email'),data)
-            return redirect(url_for('finance.finance'))
-        else:
-            return render_template('finances/financas.html', form = form)
-    else:
-        try:
-            despesas = finanService.exibirFinancas(session.get('email'))
-            print(despesas)
-            #api = OpenAiClient()
-            #answer = api.userFinances(1500, **despesas)
-            return render_template('finances/financas.html', form = form, finanService = despesas) #, #answer = answer)
-        except:
-            return render_template('finances/financas.html', form = form)
+    try:
+        despesas = finanService.exibirFinancas(session.get('email'))
+        print(despesas)
+        #api = OpenAiClient()
+        #answer = api.userFinances(1500, **despesas)
+        return render_template('finances/financas.html', form = form,finanService = despesas) #, #answer = answer)
+    except:
+        return render_template('finances/financas.html', form = form)
