@@ -5,11 +5,17 @@ class FinanceService:
     def __init__(self, conexaoRepository: ConexaoRepository ) -> None:
         self.conexao = conexaoRepository
 
-    def inserirGastos(self, email, data):
+    def inserirReceitas(self, email, data):
         data_email = {'email':email}
         condicao = self.conexao.select('usuario', **data_email)
-        vetor = {'despesas': data}
+        vetor = {'despesas': {'receitas': data}}
         self.conexao.insertDespesas('usuario',condicao,**vetor)
+
+    def inserirGastos(self, email, data):
+        data_email = {'email': email}
+        condicao = self.conexao.select('usuario', **data_email)
+        vetor = {'despesas': {'gastos': data}}
+        self.conexao.insertDespesas('usuario', condicao, **vetor)
 
     def exibirFinancas(self, email):
         data_email = {'email':email}

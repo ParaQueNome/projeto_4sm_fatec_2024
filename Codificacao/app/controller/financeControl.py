@@ -27,3 +27,17 @@ def finance():
         return render_template('finances/financas.html', form = form,finanService = despesas) #, #answer = answer)
     except:
         return render_template('finances/financas.html', form = form)
+    
+@financeBp.route('/despesas', methods=['POST'])
+def despesas():
+    if not session.get('usuario'):
+        return redirect(url_for('auth.login'))
+    form = FinancesForm()
+    conexao = Conexao(Config(),'Financia')
+    connRepository = ConexaoRepository(conexao)
+    financService = FinanceService(connRepository)
+    if request.method == 'POST':
+        financService.inserirGastos(session.get('email'), form.data)
+
+
+    
