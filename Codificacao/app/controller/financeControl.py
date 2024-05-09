@@ -19,14 +19,22 @@ def finance():
     conexao = Conexao(Config(),'Financia')
     connRepository = ConexaoRepository(conexao) 
     finanService = FinanceService(connRepository)
-    try:
-        despesas = finanService.exibirFinancas(session.get('email'))
-        print(despesas)
-        #api = OpenAiClient()
-        #answer = api.userFinances(1500, **despesas)
-        return render_template('finances/financas.html', form = form,finanService = despesas) #, #answer = answer)
-    except:
-        return render_template('finances/financas.html', form = form)
+    if request.method == 'POST':
+        print(form.data)
+        data_receitas = {'renda': form.data['renda']}
+        finanService.inserirReceitas(session.get('email'), data_receitas)
+        data_gastos = {'nome_gasto':form.data['nome_gasto'], 'valor': form.data['valor']}
+        finanService.inserirGastos(session.get('email'), data_gastos)
+        return redirect(url_for('finance.finance'))
+    else:
+        try:
+            finan_data = finanService.exibirFinancas(session.get('email'))
+            print(finan_data)
+            #api = OpenAiClient()
+            #answer = api.userFinances(1500, **despesas)
+            return render_template('finances/financas.html', form = form, finanService = finan_data) #, #answer = answer)
+        except:
+            return render_template('finances/financas.html', form = form)
     
 @financeBp.route('/despesas', methods=['POST'])
 def despesas():
@@ -38,6 +46,7 @@ def despesas():
     financService = FinanceService(connRepository)
     if request.method == 'POST':
         financService.inserirGastos(session.get('email'), form.data)
+        return redirect(url_for('finance.finance'))
 
 
     

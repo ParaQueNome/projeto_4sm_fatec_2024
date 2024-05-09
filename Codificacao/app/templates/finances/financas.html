@@ -16,25 +16,22 @@
             </thead>
             <tbody>
                 <!-- Iterar sobre as receitas -->
-                {% for item in finanService %}
-                    {% if item.renda %}
-                        <tr>
-                            <td>{{ item.renda }}</td>
-                            <td>{{ item.valor }}</td>
-                        </tr>
-                    {% endif %}
+                {% for receita in finanService.receitas %}
+                    <tr>
+                        <td>{{ receita.renda }}</td>
+                    </tr>
                 {% endfor %}
                 <!-- Calcular total de receitas -->
-                {% set total_receitas = finanService | map(attribute='valor') | map('int') | sum %}
+                {% set total_receitas = finanService | map(attribute='receitas') | map('sum', 'renda') | sum %}
                 <tr class="font-weight-bold">
                     <td>Total de Receitas</td>
                     <td>{{ total_receitas }}</td>
                 </tr>
-                
             </tbody>
         </table>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            +
+        
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalGeral">
+            Adicionar Nova Receita
         </button>
         
         <table class="table">
@@ -46,25 +43,25 @@
             </thead>
             <tbody>
                 <!-- Iterar sobre as despesas -->
-                {% for item in finanService %}
-                    {% if item.nome_gasto %}
+                {% for gasto in finanService.gastos %}
                         <tr>
-                            <td>{{ item.nome_gasto }}</td>
-                            <td>{{ item.valor }}</td>
+                            <td>{{ gasto.nome_gasto }}</td>
+                            <td>{{ gasto.valor }}</td>
                         </tr>
-                    {% endif %}
                 {% endfor %}
                 <!-- Calcular total de despesas -->
-                {% set total_despesas = finanService | map(attribute='valor') | map('int') | sum %}
+                {% set total_despesas = finanService | map(attribute='gastos') | map('sum', 'valor') | sum %}
                 <tr class="font-weight-bold">
                     <td>Total de Despesas</td>
                     <td>{{ total_despesas }}</td>
                 </tr>
             </tbody>
         </table>
+        
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDespesas">
-            +
+            Adicionar Nova Despesa
         </button>
+        
         <!-- Cálculo do Lucro/Prejuízo -->
         <h2 class="mt-4">Resultado</h2>
         <p>Lucro/Prejuízo: <span class="font-weight-bold text-primary">{{ total_receitas - total_despesas }}</span></p>
@@ -88,7 +85,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body" action="finance.finance">
-                    <form method="POST" action="{{ url_for('finance.finance') }}">
+                    <form method="POST" action="{{ url_for('finance.despesas') }}">
                         {{ form.hidden_tag() }}
                     
                         
@@ -126,8 +123,65 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalGeral" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Despesas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" action="finance.finance">
+                    <form method="POST" action="{{ url_for('finance.finance') }}">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.renda.label(class="form-label") }}
+                            {{ form.renda(class="form-control") }}
+                            {% if form.renda.errors %}
+                                <ul class="errors">
+                                    {% for error in form.renda.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.nome_gasto.label(class="form-label") }}
+                            {{ form.nome_gasto(class="form-control") }}
+                            {% if form.nome_gasto.errors %}
+                                <ul class="errors">
+                                    {% for error in form.nome_gasto.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.valor.label(class="form-label") }}
+                            {{ form.valor(class="form-control") }}
+                            {% if form.valor.errors %}
+                                <ul class="errors">
+                                    {% for error in form.valor.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Adicionar despesa</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDespesas">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalGeral">
         Adicionar Nova Despesa
     </button>
 

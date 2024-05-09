@@ -8,13 +8,13 @@ class FinanceService:
     def inserirReceitas(self, email, data):
         data_email = {'email':email}
         condicao = self.conexao.select('usuario', **data_email)
-        vetor = {'despesas': {'receitas': data}}
+        vetor = {'despesas.receitas': data}
         self.conexao.insertDespesas('usuario',condicao,**vetor)
 
     def inserirGastos(self, email, data):
         data_email = {'email': email}
         condicao = self.conexao.select('usuario', **data_email)
-        vetor = {'despesas': {'gastos': data}}
+        vetor = {'despesas.gastos': data}
         self.conexao.insertDespesas('usuario', condicao, **vetor)
 
     def exibirFinancas(self, email):
@@ -24,6 +24,6 @@ class FinanceService:
 
     def totalGastos(self, usuario):
         dados = self.conexao.select("usuario", **usuario)
-        for despesas in dados['despesas']:
+        for despesas in dados['despesas.gastos']:
             total = despesas['valor'] + total
         return total
