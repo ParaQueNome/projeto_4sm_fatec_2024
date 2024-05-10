@@ -1,0 +1,122 @@
+.user_Sair{
+    position: relative;
+    position: absolute; right: 30px;
+    display: flex;
+    flex-basis: auto;
+}
+
+:root {
+    --yellow: #DBC00B;
+    --blue: #2A0FF2;
+    --pink: #EB0A57;
+    --lilas: #E50FF2;
+    --purple: #8018DB;
+    --lightgreen: #0DDB24;
+    --green: #0E8F45;
+    --black: #000;
+    --black2: rgba(0, 0, 0, 0.699);
+    --lightbrown: #DB851D;
+    --brown: #8F5A1A;
+    --browntrasparente: #8f5a1abd; 
+    --grey: rgb(180, 180, 180);
+    --white: #ffffff;
+    --white2: rgba(255, 255, 255, 0.699);
+}
+.backyellow  {background-color: var(--yellow);}
+.backblue     {background-color: var(--blue);}
+.backgreen    {background-color: var(--green);}
+.backlightgreen    {background-color: var(--lightgreen);}
+.backlilas     {background-color: var(--lilas);}
+.backpurple    {background-color: var(--purple);}
+.backblack	{background-color: var(--black);}
+.backbrown    {background-color: var(--brown);}
+.backlightbrown    {background-color: var(--lightbrown);}
+.backbrowntras    {background-color: var(--browntrasparente);}
+.backgrey     {background-color: var(--grey);}
+.backblack2	{background-color: var(--black2);}
+.backwhite  {background-color: var(--white);}
+.backwhite2  {background-color: var(--white2);}
+
+
+.txtyellow  {color: var(--yellow);}
+.txtblue     {color: var(--blue);}
+.txtgreen   {color: var(--green);}
+.txtlilas  {color: var(--lilas);}
+.txtpurple   {color: var(--purple);}
+.txtblack	 {color: var(--black);}
+.txtlibrown  {color: var(--lightbrown);}
+.txtwhite	 {color: var(--white);}
+
+.bordr5  {border-radius: 5%;}
+.bordr10 {border-radius: 10%;}
+.bordr20 {border-radius: 20%;}
+.bordr50 {border-radius: 50%;}
+.bordr100 {border-radius: 100%;}
+.bordr100px {border-radius: 100px;}
+ 
+
+#modal label{
+    display: block;
+    font-size: x-large;
+    
+}
+
+#modal .login{
+    width: 200% ;
+}
+
+#modal span a{
+    text-decoration: none;
+    color: #FF7A00;
+}
+
+.conteiner{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    margin-top: 10%;
+    position: relative;
+    position: absolute; right:34%; left:34%;
+}
+
+.texto{
+   font-size: large;
+   margin-left: 22%;
+   margin-right: 22%;
+   margin-top: 4%;
+}
+.botao{
+    margin-left: 30%;
+   margin-right: 30%;
+   margin-top: 4%; 
+   width: 179px;
+   height: 45px;
+}
+
+.boxleft{
+    border-radius: 40px 40px 40px 40px;
+    height: 450px;
+    width: 570px;
+    padding: 40px;
+    display: flex;
+    float: left;
+    flex-wrap: wrap;
+}
+.boxright{
+    border-radius: 0 40px 40px 0;
+    height: 450px;
+    width: 370px;
+    padding: 40px;
+    display: flex;
+    float: right;
+    justify-content: center;
+    align-items: center;
+}
+.back{
+    height: 100%;
+    width: 100%;
+    
+}
+
+
+

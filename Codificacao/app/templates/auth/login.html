@@ -2,36 +2,35 @@
 
 {% block title %}Cadastro{% endblock %}
 {% block content %}
-
-    <h1>Login</h1>
-    <form method="POST">
-        {{ form.csrf_token }}
-        <div>
-            {{ form.email.label }}
-            {{ form.email(class="form-control") }} {# Adiciona a classe form-control do Bootstrap para estilização #}
-            {% for error in form.email.errors %}
+<div class="back">
+    <div class="conteiner">
+        <div id="modal" class="boxleft backblack2">
+            <form method="POST">
+            {{ form.csrf_token }}
+            <div class="login">
+                {{ form.email.label }}
+                {{ form.email(class="form-control") }} {# Adiciona a classe form-control do Bootstrap para estilização #}
+                {% for error in form.email.errors %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <div class="login">
+                {{ form.password.label }}
+                {{ form.password(class="form-control") }} {# Adiciona a classe form-control do Bootstrap para estilização #}
+                {% for error in form.password.errors %}
                 <p style="color: red;">{{ error }}</p>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.password.label }}
-            {{ form.password(class="form-control") }} {# Adiciona a classe form-control do Bootstrap para estilização #}
-            {% for error in form.password.errors %}
-                <p style="color: red;">{{ error }}</p>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.submit(class="btn btn-primary") }} {# Adiciona a classe btn btn-primary do Bootstrap para estilização #}
-        </div>
-        {% if answer %}
-        {% set paragraphs = answer.split("\n") %}
-            {% for paragraph in paragraphs %}
-                {{ paragraph }} <br>
-            {% endfor %}
-        {% endif %}
-
-
-    
-    </form>
-
-{% endblock %}
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.submit(class="btn btn-primary") }} {# Adiciona a classe btn btn-primary do Bootstrap para estilização #}
+            </div>
+            {% if answer %}
+            {% set paragraphs = answer.split("\n") %}
+                {% for paragraph in paragraphs %}
+                    {{ paragraph }} <br>
+                {% endfor %}
+            {% endif %}
+            </form>
+    </div>
+</div>
+{% endblock %}  
