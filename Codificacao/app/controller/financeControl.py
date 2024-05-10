@@ -44,8 +44,32 @@ def despesas():
     conexao = Conexao(Config(),'Financia')
     connRepository = ConexaoRepository(conexao)
     financService = FinanceService(connRepository)
+    data_gastos = {'nome_gasto':form.data['nome_gasto'], 'valor': form.data['valor']}
     if request.method == 'POST':
-        financService.inserirGastos(session.get('email'), form.data)
+        financService.inserirGastos(session.get('email'), data_gastos)
+        return redirect(url_for('finance.finance'))
+
+@financeBp.route('/receitas', methods=['POST'])
+def receitas():
+    if not session.get('usuario'):
+        return redirect(url_for('auth.login'))
+    form = FinancesForm()
+    conexao = Conexao(Config(), 'Financia')
+    connRepository = ConexaoRepository(conexao)
+    financService = FinanceService(connRepository)
+    data_receitas = {'renda': form.data['renda']}
+    if request.method == 'POST':
+        financService.inserirReceitas(session.get('email'), data_receitas)
+        return redirect(url_for('finance.finance'))
+    
+@financeBp.route('/delete_receita', methods=['POST'])
+def deleteReceita():
+    if not session.get('usuario'):
+        return redirect(url_for('auth.login'))
+    conexao = Conexao(Config(), 'Financia')
+    connRepository = ConexaoRepository(conexao)
+    financService = FinanceService(connRepository)
+    if request.method == 'POST':
         return redirect(url_for('finance.finance'))
 
 

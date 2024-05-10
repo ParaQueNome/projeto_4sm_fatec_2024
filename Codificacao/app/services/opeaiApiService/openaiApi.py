@@ -9,7 +9,7 @@ class OpenAiClient:
 
     def userFinances(self, renda, **despesa):
         messages =  [
-            {'role':'system', 'content': 'Você é um assistente Financeiro que dá dicas de economia e gerenciamento de renda com base no valor da renda e dos gastos do usuário'},
+            {'role':'system', 'content': 'Você é um assistente Financeiro que dá dicas de economia e gerenciamento de renda com base no valor da renda e dos gastos do usuário. Pode utilizar o historico anterior como base para nova análise'},
             {'role': 'user', 'content': f'A renda é de R${renda} e os gastos são: {despesa}'}
         ]
         answer = self.openai.chat.completions.create(
@@ -21,3 +21,7 @@ class OpenAiClient:
         messages.append({'role': 'assistant', 'content': answer.choices[0].message.content})
         return answer.choices[0].message.content
     
+    def analiseInvestimentos(self,resultRedeNeural ,renda, **despesa):
+        messages = [
+            
+        ]
