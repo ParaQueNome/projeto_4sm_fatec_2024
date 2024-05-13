@@ -57,7 +57,7 @@ def receitas():
     conexao = Conexao(Config(), 'Financia')
     connRepository = ConexaoRepository(conexao)
     financService = FinanceService(connRepository)
-    data_receitas = {'renda': form.data['renda']}
+    data_receitas = {'renda': form.data['renda'], 'nome_receita': form.data['nome_receita']}
     if request.method == 'POST':
         financService.inserirReceitas(session.get('email'), data_receitas)
         return redirect(url_for('finance.finance'))

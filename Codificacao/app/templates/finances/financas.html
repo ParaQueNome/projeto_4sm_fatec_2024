@@ -24,9 +24,9 @@
                 {% for receita in finanService.receitas %}
                     
                     <tr>
+                        <td>{{receita.nome_receita}}</td>
                         <td>{{ receita.renda }}</td>
                         <td></td>
-                        <span><td><button type="button">Atualizar</button></td></span>
                         <td>
                         <form method="post" action="{{ url_for('finance.deleteReceita') }}">
                             {{ form.csrf_token }}
@@ -64,14 +64,6 @@
                         <tr>
                             <td>{{ gasto.nome_gasto }}</td>
                             <td>{{ gasto.valor }}</td>
-                            <span>
-                                <td>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalDespesas" idGasto="{{ gasto['_id'] }}">
-                                        Atualizar
-                                    </button>
-                                    
-                                </td>
-                            </span>
                             
                             <td>
                                 <form method="post" action="{{ url_for('finance.deleteDespesa') }}">
@@ -121,74 +113,39 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body" action="finance.finance">
-                        {% if idGasto %}
-                            
-                            <form method="POST" action="{{ url_for('finance.updateDespesa') }}">
-                                {{ form.hidden_tag() }}
-                                <input type="hidden" name="gasto_id" id="idGasto">
-                                <div class="form-group">
-                                    {{ form.nome_gasto.label(class="form-label") }}
-                                    {{ form.nome_gasto(class="form-control") }}
-                                    {% if form.nome_gasto.errors %}
-                                        <ul class="errors">
-                                            {% for error in form.nome_gasto.errors %}
-                                                <li>{{ error }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                </div>
-                                
-                                <div class="form-group">
-                                    {{ form.valor.label(class="form-label") }}
-                                    {{ form.valor(class="form-control") }}
-                                    {% if form.valor.errors %}
-                                        <ul class="errors">
-                                            {% for error in form.valor.errors %}
-                                                <li>{{ error }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                </div>
-                                
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                    <button type="submit" class="btn btn-primary">Atualizar</button>
-                                </div>
-                            </form>
-                        {% else %}
-                            <form method="POST" action="{{ url_for('finance.despesas') }}">
-                                {{ form.hidden_tag() }}
-                                
-                                <div class="form-group">
-                                    {{ form.nome_gasto.label(class="form-label") }}
-                                    {{ form.nome_gasto(class="form-control") }}
-                                    {% if form.nome_gasto.errors %}
-                                        <ul class="errors">
-                                            {% for error in form.nome_gasto.errors %}
-                                                <li>{{ error }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                </div>
-                                
-                                <div class="form-group">
-                                    {{ form.valor.label(class="form-label") }}
-                                    {{ form.valor(class="form-control") }}
-                                    {% if form.valor.errors %}
-                                        <ul class="errors">
-                                            {% for error in form.valor.errors %}
-                                                <li>{{ error }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                </div>
-                                
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                    <button type="submit" class="btn btn-primary">Adicionar despesa</button>
-                                </div>
-                            </form>
-                        {% endif %}
+                    <form method="POST" action="{{ url_for('finance.despesas') }}">
+                        {{ form.hidden_tag() }}
+                    
+                        
+                        <div class="form-group">
+                            {{ form.nome_gasto.label(class="form-label") }}
+                            {{ form.nome_gasto(class="form-control") }}
+                            {% if form.nome_gasto.errors %}
+                                <ul class="errors">
+                                    {% for error in form.nome_gasto.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.valor.label(class="form-label") }}
+                            {{ form.valor(class="form-control") }}
+                            {% if form.valor.errors %}
+                                <ul class="errors">
+                                    {% for error in form.valor.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Adicionar despesa</button>
+                        </div>
+                    </form>
                 </div>
                 
             </div>
@@ -205,6 +162,17 @@
                 <div class="modal-body" action="finance.finance">
                     <form method="POST" action="{{ url_for('finance.finance') }}">
                         {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.nome_receita.label(class="form-label") }}
+                            {{ form.nome_receita(class="form-control") }}
+                            {% if form.nome_receita.errors %}
+                                <ul class="errors">
+                                    {% for error in form.nome_receita.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
                         <div class="form-group">
                             {{ form.renda.label(class="form-label") }}
                             {{ form.renda(class="form-control") }}
@@ -263,6 +231,17 @@
                 <div class="modal-body" action="finance.finance">
                     <form method="POST" action="{{ url_for('finance.receitas') }}">
                         {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.nome_receita.label(class="form-label") }}
+                            {{ form.nome_receita(class="form-control") }}
+                            {% if form.nome_receita.errors %}
+                                <ul class="errors">
+                                    {% for error in form.nome_receita.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
                         <div class="form-group">
                             {{ form.renda.label(class="form-label") }}
                             {{ form.renda(class="form-control") }}
