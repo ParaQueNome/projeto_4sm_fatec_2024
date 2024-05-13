@@ -90,19 +90,20 @@
         <!-- Cálculo do Lucro/Prejuízo -->
         <h2 class="mt-4">Resultado</h2>
         <p>Lucro/Prejuízo: <span class="font-weight-bold text-primary">{{ total_receitas - total_despesas }}</span></p>
+        {% if resposta %}
+        {% set paragraphs = resposta.split("\n") %}
+            {% for paragraph in paragraphs %}
+                {{ paragraph }} <br>
+            {% endfor %}
+        {% endif %}
     </div>
-    {% else %}
+        {% else %}
         <p>Nada Cadastrado no momento</p>
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalGeral">
             Adicionar Nova Despesa
         </button>
     {% endif %}
-    {% if answer %}
-        {% set paragraphs = answer.split("\n") %}
-            {% for paragraph in paragraphs %}
-                {{ paragraph }} <br>
-            {% endfor %}
-        {% endif %}
+    
         
     <!-- Modal -->
     <div class="modal fade" id="modalDespesas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

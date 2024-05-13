@@ -48,6 +48,17 @@ class FinanceService:
             total = despesas['valor'] + total
         return total
     
+    def totalReceitas(self, usuario):
+        dictEmail = {'email': usuario}
+        dados = self.conexao.select("usuario", **dictEmail)
+        despesas = dados['despesas']
+        receitas = despesas['receitas']
+        total = 0
+        for receita in receitas:
+            castReceita = float(receita['renda'])
+            total = castReceita + total
+        return total
+    
     def updateDespesas(self, email, idDespesa, **gastos):
         dictEmail = {'email': email}
         condicao = self.conexao.select('usuario', **dictEmail)

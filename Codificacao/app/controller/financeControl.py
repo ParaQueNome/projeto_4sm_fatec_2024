@@ -21,7 +21,7 @@ def finance():
     finanService = FinanceService(connRepository)
     if request.method == 'POST':
         print(form.data)
-        data_receitas = {'renda': form.data['renda']}
+        data_receitas = {'renda': form.data['renda'], 'nome_receita': form.data['nome_receita']}
         finanService.inserirReceitas(session.get('email'), data_receitas)
         data_gastos = {'nome_gasto':form.data['nome_gasto'], 'valor': form.data['valor']}
         finanService.inserirGastos(session.get('email'), data_gastos)
@@ -29,13 +29,15 @@ def finance():
     else:
         try:
             finan_data = finanService.exibirFinancas(session.get('email'))
+            totalReceitas = finanService.totalReceitas(session.get('email'))
             print(finan_data)
-            #api = OpenAiClient()
-            #answer = api.userFinances(1500, **despesas)
-            return render_template('finances/financas.html', form = form, finanService = finan_data) #, #answer = answer)
+            api = OpenAiClient()
+            answer = api.userFinances(totalReceitas, **finan_data)
+            print(answer)
+            return render_template('finances/financas.html', form = form, finanService = finan_data, resposta = answer) #, #answer = answer)
         except:
             return render_template('finances/financas.html', form = form)
-    
+            
 @financeBp.route('/despesas', methods=['POST'])
 def despesas():
     if not session.get('usuario'):
