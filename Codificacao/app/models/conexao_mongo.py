@@ -12,7 +12,6 @@ class Conexao:
         collection.insert_one(kwargs)
 
     def update(self ,collection_name, **kwargs)-> None:
-    
         collection = self.db[collection_name]
 
         collection.update_one(kwargs)
@@ -33,6 +32,13 @@ class Conexao:
         
 
         return collection.find_one(kwargs)
-        
     
+    def executeAggregation(self, collection_name ,kwargs ):
+        collection = self.db[collection_name]
+        filter = kwargs[0]
+        update= kwargs[1]
+        collection.update_one(filter = filter, update =update)
+        
+    def closeConnection(self):
+        self.client.close()
     

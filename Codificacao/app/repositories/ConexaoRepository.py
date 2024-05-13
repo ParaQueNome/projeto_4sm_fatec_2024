@@ -1,9 +1,7 @@
 from app.models.conexao_mongo import Conexao
 
 
-
 class ConexaoRepository:
-
     def __init__(self, conexao : Conexao) -> None:
         self.conexao = conexao
     
@@ -23,4 +21,7 @@ class ConexaoRepository:
     
     def insertDespesas(self, collection_name,condicao, **kwargs):
         return self.conexao.insertDespesas(collection_name, condicao, **kwargs)
+    
+    def executeAggregation(self, collection_name,kwargs):
+        return self.conexao.executeAggregation(collection_name,kwargs)
         

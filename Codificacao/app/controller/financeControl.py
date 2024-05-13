@@ -70,7 +70,42 @@ def deleteReceita():
     connRepository = ConexaoRepository(conexao)
     financService = FinanceService(connRepository)
     if request.method == 'POST':
+        print(request.form['receita_id'])
+        financService.deletarReceita(session.get('email'), request.form['receita_id'])
         return redirect(url_for('finance.finance'))
+
+@financeBp.route('/delete_gasto', methods=['POST'])
+def deleteDespesa():
+    if not session.get('usuario'):
+        return redirect(url_for('auth.login'))
+    conexao = Conexao(Config(), 'Financia')
+    connRepository = ConexaoRepository(conexao)
+    financService = FinanceService(connRepository)
+    if request.method == 'POST':
+        print(request.form['gasto_id'])
+        financService.deletarDespesa(session.get('email'), request.form['gasto_id'])
+        return redirect(url_for('finance.finance'))
+
+@financeBp.route('/update_gasto', methods=['POST'])
+def updateDespesas():
+    if not session.get('usuario'):
+        return redirect(url_for('auth.login'))
+    form = FinancesForm()
+    gasto_id = request.form['gasto_id']
+    nome_gasto = request.form['nomeGasto']
+    valor_gasto = request.form['valorGasto']
+    
+    conexao = Conexao(Config(), 'Financia')
+    connRepository = ConexaoRepository(conexao)
+    financService = FinanceService(connRepository)
+    
+    financService.updateDespesas(session.get('email'), gasto_id, **form.data)
+    
+    return redirect(url_for('finance.finance'))
+
+
+        
+
 
 
     
