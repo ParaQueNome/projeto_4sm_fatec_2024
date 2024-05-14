@@ -37,10 +37,9 @@
                     </tr>
                 {% endfor %}
                 <!-- Calcular total de receitas -->
-                {% set total_receitas = finanService | map(attribute='receitas') | map('sum', 'renda') | sum %}
                 <tr class="font-weight-bold">
                     <td>Total de Receitas</td>
-                    <td>{{ total_receitas }}</td>
+                    <td>{{ totalReceitas }}</td>
                 </tr>
             </tbody>
         </table>
@@ -75,10 +74,9 @@
                         </tr>
                 {% endfor %}
                 <!-- Calcular total de despesas -->
-                {% set total_despesas = finanService.gastos | map(attribute='gastos') | map('sum', 'gastos') | sum %}
                 <tr class="font-weight-bold">
                     <td>Total de Despesas</td>
-                    <td>{{ total_despesas }}</td>
+                    <td>{{ totalGastos }}</td>
                 </tr>
             </tbody>
         </table>
@@ -89,7 +87,7 @@
         
         <!-- Cálculo do Lucro/Prejuízo -->
         <h2 class="mt-4">Resultado</h2>
-        <p>Lucro/Prejuízo: <span class="font-weight-bold text-primary">{{ total_receitas - total_despesas }}</span></p>
+        <p>Lucro/Prejuízo: <span class="font-weight-bold text-primary">R${{ totalReceitas - totalGastos}}</span></p>
     </div>
         {% else %}
         <p>Nada Cadastrado no momento</p>

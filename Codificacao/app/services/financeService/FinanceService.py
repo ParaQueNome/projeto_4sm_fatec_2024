@@ -43,9 +43,14 @@ class FinanceService:
         self.conexao.executeAggregation('usuario', kwargs)
     
     def totalGastos(self, usuario):
-        dados = self.conexao.select("usuario", **usuario)
-        for despesas in dados['despesas.gastos']:
-            total = despesas['valor'] + total
+        dictEmail = {'email': usuario}
+        dados = self.conexao.select("usuario", **dictEmail)
+        despesas = dados['despesas']
+        descontos = despesas['gastos']
+        total = 0
+        for desconto in descontos:
+            castGasto = float(desconto['valor'])
+            total = castGasto + total
         return total
     
     def totalReceitas(self, usuario):
