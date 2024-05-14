@@ -30,14 +30,25 @@ def finance():
         try:
             finan_data = finanService.exibirFinancas(session.get('email'))
             totalReceitas = finanService.totalReceitas(session.get('email'))
-            print(finan_data)
-            api = OpenAiClient()
-            answer = api.userFinances(totalReceitas, **finan_data)
-            print(answer)
-            return render_template('finances/financas.html', form = form, finanService = finan_data, resposta = answer) #, #answer = answer)
-        except:
+            # print(finan_data)
+            # api = OpenAiClient()
+            # answer = api.userFinances(totalReceitas, session.get('usuario'), **finan_data)
+            # print(answer)
+            return render_template('finances/financas.html', form = form, finanService = finan_data) #, #answer = answer)
+        except Exception as e:
+            print(e)
             return render_template('finances/financas.html', form = form)
-            
+@financeBp.route('/chat',methods =['GET','POST'])
+def chat():
+    conexao = Conexao(Config(),'Financia')
+    connRepository = ConexaoRepository(conexao) 
+    finanService = FinanceService(connRepository)
+    finan_data = finanService.exibirFinancas(session.get('email'))
+    totalReceitas = finanService.totalReceitas(session.get('email'))
+    print(finan_data)
+    api = OpenAiClient()
+    answer = api.userFinances(totalReceitas, session.get('usuario'), **finan_data)      
+    return answer 
 @financeBp.route('/despesas', methods=['POST'])
 def despesas():
     if not session.get('usuario'):

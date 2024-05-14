@@ -90,12 +90,6 @@
         <!-- Cálculo do Lucro/Prejuízo -->
         <h2 class="mt-4">Resultado</h2>
         <p>Lucro/Prejuízo: <span class="font-weight-bold text-primary">{{ total_receitas - total_despesas }}</span></p>
-        {% if resposta %}
-        {% set paragraphs = resposta.split("\n") %}
-            {% for paragraph in paragraphs %}
-                {{ paragraph }} <br>
-            {% endfor %}
-        {% endif %}
     </div>
         {% else %}
         <p>Nada Cadastrado no momento</p>
@@ -103,8 +97,49 @@
             Adicionar Nova Despesa
         </button>
     {% endif %}
+    <div id="chat-btn">
+        <button class="btn btn-primary" id="chat-toggle-btn">Chat</button>
+    </div>
     
-        
+    <script>
+        document.getElementById('chat-toggle-btn').addEventListener('click', function() {
+            fetch('/finance/chat', {
+                method: 'GET',
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Adicionar quebras de linha para criar parágrafos
+                var paragraphs = data.split("\n");
+                var formattedData = "";
+                paragraphs.forEach(paragraph => {
+                    formattedData += "<p>" + paragraph + "</p>";
+                });
+    
+                document.getElementById('chat-body').innerHTML = formattedData;
+                var modal = new bootstrap.Modal(document.getElementById('modal-chat'));
+                modal.show();
+            })
+            .catch((error) => {
+                console.error('Erro ao carregar as respostas do assistente financeiro:', error);
+            });
+        });
+    </script>
+        <!-- Modal de Chat -->
+    <div class="modal fade" id="modal-chat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Assistente Financeiro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" id="chat-body">
+                    <!-- Aqui serão exibidas as respostas do assistente financeiro -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
     <!-- Modal -->
     <div class="modal fade" id="modalDespesas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

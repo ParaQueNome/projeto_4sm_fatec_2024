@@ -2,7 +2,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap5
 from app.controller.authControl import auth_bp
 from app.controller.financeControl import financeBp
-from app.services.opeaiApiService.openaiApi import OpenAiClient
+from app.controller.investmentControl import investmentBp
 from flask_wtf.csrf import CSRFProtect
 
 def create_app():
@@ -12,7 +12,7 @@ def create_app():
     # Importando as rotas da aplicação
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(financeBp, url_prefix='/finance')
-
+    app.register_blueprint(investmentBp, url_prefix='/trade')
     # Configurações opcionais da aplicação
     app.config['SECRET_KEY'] = 't%23s342%%@'
     csrf = CSRFProtect(app)
