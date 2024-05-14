@@ -12,8 +12,8 @@ from app.services.cryptographyService.cryptographyService import CryptographySer
 from config import Config
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"placeholder": "Seu endereço de email"})
-    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)], render_kw={"placeholder": "Sua senha"})
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     submit = SubmitField('Login')
 
 

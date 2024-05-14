@@ -2,35 +2,57 @@
 
 {% block title %}Cadastro{% endblock %}
 {% block content %}
-<div class="back">
-    <div class="conteiner">
-        <div id="modal" class="boxleft backblack2">
-            <form method="POST">
-            {{ form.csrf_token }}
-            <div class="login">
-                {{ form.email.label }}
-                {{ form.email(class="form-control") }} {# Adiciona a classe form-control do Bootstrap para estilização #}
-                {% for error in form.email.errors %}
-                    <p style="color: red;">{{ error }}</p>
-                {% endfor %}
-            </div>
-            <div class="login">
-                {{ form.password.label }}
-                {{ form.password(class="form-control") }} {# Adiciona a classe form-control do Bootstrap para estilização #}
-                {% for error in form.password.errors %}
-                <p style="color: red;">{{ error }}</p>
-                {% endfor %}
-            </div>
-            <div>
-                {{ form.submit(class="btn btn-primary") }} {# Adiciona a classe btn btn-primary do Bootstrap para estilização #}
-            </div>
-            {% if answer %}
-            {% set paragraphs = answer.split("\n") %}
-                {% for paragraph in paragraphs %}
-                    {{ paragraph }} <br>
-                {% endfor %}
-            {% endif %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const inputFields = document.querySelectorAll('.inputbox input');
+        inputFields.forEach(function(input) {
+            input.addEventListener('focus', function() {
+                this.parentNode.querySelector('label').classList.add('hidden');
+            });
+            input.addEventListener('blur', function() {
+                if (this.value === '') {
+                    this.parentNode.querySelector('label').classList.remove('hidden');
+                }
+            });
+        });
+    });
+</script>
+
+<section>
+    <div class="form-box">
+        <div class="form-value">
+            <form method="POST" action="">
+                {{ form.csrf_token }}
+                <h2>Login</h2>
+                <div class="inputbox">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    {{ form.email.label}}
+                    {{ form.email }}
+                    {% for error in form.email.errors %}
+                        <p style="color: red;">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="inputbox">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    {{ form.password.label }}
+                    {{ form.password }}
+                    {% for error in form.password.errors %}
+                        <p style="color: red;">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="forget">
+                    <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
+                </div>
+                    {{ form.submit(class="button") }}
+                <div class="register">
+                    <p>Don't have a account <a href="{{url_for('auth.cadastro')}}">Register</a></p>
+                </div>
             </form>
+        </div>
     </div>
-</div>
+</section>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 {% endblock %}  
+
+
