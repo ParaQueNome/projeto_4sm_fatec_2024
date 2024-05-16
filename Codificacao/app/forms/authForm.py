@@ -32,3 +32,5 @@ class AuthenticationForm(FlaskForm):
             raise ValidationError('Email já cadastrado')
         if not re.search(r'@', email.data):
             raise ValidationError('Email deve conter "@".')
+        if len(email) < 5:
+            raise ValidationError('Email inválido')

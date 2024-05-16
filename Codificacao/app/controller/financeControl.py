@@ -102,9 +102,6 @@ def updateDespesas():
         return redirect(url_for('auth.login'))
     form = FinancesForm()
     gasto_id = request.form['gasto_id']
-    nome_gasto = request.form['nomeGasto']
-    valor_gasto = request.form['valorGasto']
-    
     conexao = Conexao(Config(), 'Financia')
     connRepository = ConexaoRepository(conexao)
     financService = FinanceService(connRepository)
