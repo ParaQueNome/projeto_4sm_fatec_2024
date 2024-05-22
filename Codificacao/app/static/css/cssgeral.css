@@ -17,11 +17,9 @@ section{
     align-items: center;
     min-height: 100vh;
     width: 100%;
-    
-    background: url('background6.jpg')no-repeat;
     background-position: center;
     background-size: cover;
-    background-color: black;
+    z-index: 2;
 }
 .form-box{
     position: relative;
@@ -30,11 +28,11 @@ section{
     background: transparent;
     border: 2px solid rgba(255,255,255,0.5);
     border-radius: 20px;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: gray;
+    opacity: 100%;
 
 }
 h2{
@@ -125,4 +123,53 @@ h2{
 }
 .register p a:hover{
     text-decoration: underline;
+}
+.animacao {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background-color: black;
+}
+.animacao .block {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #444;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+}
+.animacao.circle .block {
+  border-radius: 50%;
+}
+.animacao .block:nth-child(3n + 1) {
+  background: #042603;
+}
+.animacao .block:nth-child(3n + 2) {
+  background: #0CBF06;
+}
+.animacao .block:nth-child(3n + 3) {
+  background: #0DF205;
+}
+.animacao button {
+  position: relative;
+  z-index: 1;
+  margin: 10px;
+  border: none;
+  background: #fff;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 15px 30px;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+footer{
+    position: absolute;
+    bottom: 1px;
+    opacity: 100%;
+    width: 100%;
+    z-index: 2;
 }
