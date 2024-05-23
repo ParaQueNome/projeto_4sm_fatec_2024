@@ -20,17 +20,20 @@ class AuthenticationForm(FlaskForm):
             raise ValidationError('Nome de usuário deve conter pelo menos 4 caracteres e não pode ser apenas números.')
 
     def validate_password(self, password):
-        if len(password.data) < 8 or not re.search(r'[!@#$%^&*(),.?":{}|<>]', password.data):
-            raise ValidationError('Senha deve ter pelo menos 8 caracteres e conter pelo menos um caractere especial.')
+        if len(password.data) < 8:
+            raise ValidationError('Senha menor que 8 caracteres')
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password.data):
+            raise ValidationError('A senha deve conter caractere especial.')
+
 
     def validate_email(self, email):
         conexao = Conexao(Config(),"Financia")
         conexaoRepository = ConexaoRepository(conexao)
         data = {"email": email.data}
         result = conexaoRepository.select("usuario", **data)
-        if(result):
+        if result:
             raise ValidationError('Email já cadastrado')
         if not re.search(r'@', email.data):
             raise ValidationError('Email deve conter "@".')
-        if len(email) < 5:
+        if len(email.data) < 5:
             raise ValidationError('Email inválido')

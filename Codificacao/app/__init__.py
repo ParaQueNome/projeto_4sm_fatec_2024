@@ -16,5 +16,4 @@ def create_app():
     # Configurações opcionais da aplicação
     app.config['SECRET_KEY'] = 't%23s342%%@'
     csrf = CSRFProtect(app)
-    print(resposta)
     return app
