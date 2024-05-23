@@ -16,7 +16,7 @@ section{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    width: 100%;
+    width: 100vw;
     background-position: center;
     background-size: cover;
     z-index: 2;
@@ -26,16 +26,17 @@ section{
     width: 400px;
     height: 450px;
     background: transparent;
-    border: 2px solid rgba(255,255,255,0.5);
     border-radius: 20px;
     backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 100%;
+    background-color: rgba(0, 0, 0, 0.801);
+    
 
 }
-h2{
+.form-box h2{
     font-size: 2em;
     color: #fff;
     text-align: center;
@@ -126,14 +127,14 @@ h2{
 }
 .animacao {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1;
-  background-color: black;
+  background-color: #343a40;
 }
 .animacao .block {
   position: absolute;
@@ -149,27 +150,21 @@ h2{
   background: #042603;
 }
 .animacao .block:nth-child(3n + 2) {
-  background: #0CBF06;
+  background: #0cbf063d;
 }
 .animacao .block:nth-child(3n + 3) {
-  background: #0DF205;
+  background: #0df2053b;
 }
 .animacao button {
   position: relative;
   z-index: 1;
   margin: 10px;
   border: none;
-  background: #fff;
   font-size: 1.2em;
   cursor: pointer;
   padding: 15px 30px;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
 }
-
-footer{
-    position: absolute;
-    bottom: 1px;
-    opacity: 100%;
-    width: 100%;
-    z-index: 2;
+.error{
+    color: red;
 }

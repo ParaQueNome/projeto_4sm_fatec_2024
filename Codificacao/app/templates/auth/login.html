@@ -14,25 +14,22 @@
                         <ion-icon name="mail-outline"></ion-icon>
                         {{ form.email.label}}
                         {{ form.email }}
-                        {% for error in form.email.errors %}
-                            <p style="color: red;">{{ error }}</p>
-                        {% endfor %}
                     </div>
+                    {% for error in form.email.errors %}
+                            <span class="error">{{ error }}</span>
+                    {% endfor %}
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
                         {{ form.password.label }}
                         {{ form.password }}
-                        {% for error in form.password.errors %}
-                            <p style="color: red;">{{ error }}</p>
-                        {% endfor %}
                     </div>
-                    <div class="forget">
-                        <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
-                    </div>
-                        {{ form.submit(class="button") }}
+                    {% for error in form.password.errors %}
+                            <span class="error">{{ error }}</span>
+                    {% endfor %}
                     <div class="register">
                         <p>Don't have a account <a href="{{url_for('auth.cadastro')}}">Register</a></p>
                     </div>
+                        {{ form.submit(class="button") }}
                 </form>
             </div>
         </div>
@@ -50,9 +47,13 @@ referrerpolicy="no-referrer"
     document.addEventListener("DOMContentLoaded", function() {
         const inputFields = document.querySelectorAll('.inputbox input');
         inputFields.forEach(function(input) {
+            if (input.value !== '') {
+                input.parentNode.querySelector('label').classList.add('hidden');
+            }
+
             input.addEventListener('focus', function() {
                 this.parentNode.querySelector('label').classList.add('hidden');
-                generate()
+                generate(); circle()
             });
             input.addEventListener('blur', function() {
                 if (this.value === '') {
@@ -89,7 +90,6 @@ function generate() {
     },
   });
 }
-
 generate();
 </script>
 {% endblock %}  
