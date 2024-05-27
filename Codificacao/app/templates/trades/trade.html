@@ -1,1 +1,85 @@
 {% extends 'base.html' %}
+
+{% block title %}Cadastro{% endblock %}
+{% block styles %}
+{{super()}}
+<style>
+    .ticker-card {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        background-color: #f8f9fa;
+    }
+    .ticker-details {
+        margin-top: 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .ticker-detail-item {
+        width: 48%;
+        margin-bottom: 0.5rem;
+    }
+    .container {
+        max-width: 1200px; /* Ajuste a largura máxima do container */
+    }
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+    .pagination a {
+        margin: 0 5px;
+        padding: 8px 16px;
+        text-decoration: none;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    .pagination a.active {
+        background-color: #007bff;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <div class="row">
+            {% for ticker, details in exchange.items() %}
+            <div class="col-md-6">
+                <div class="ticker-card">
+                    <button class="btn btn-primary w-100" id="chat-toggle-btn">
+                        {{ ticker }} - {{ details[0] }}
+                    </button>
+                    <div class="ticker-details">
+                        <!-- Detalhes da ação -->
+                        <div class="ticker-detail-item">Open: {{ details[1].open }}</div>
+                        <div class="ticker-detail-item">High: {{ details[1].high }}</div>
+                        <div class="ticker-detail-item">Low: {{ details[1].low }}</div>
+                        <div class="ticker-detail-item">Close: {{ details[1].close }}</div>
+                        <div class="ticker-detail-item">Volume: {{ details[1].volume }}</div>
+                        <div class="ticker-detail-item">VWAP: {{ details[1].vwap }}</div>
+                        <div class="ticker-detail-item">Timestamp: {{ details[1].timestamp }}</div>
+                        <div class="ticker-detail-item">Transactions: {{ details[1].transactions }}</div>
+                    </div>
+                </div>
+            </div>
+            {% if loop.index % 2 == 0 %}
+            </div><div class="row">
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="?page={{ page - 1 }}" class="btn btn-primary">Previous</a>
+            {% endif %}
+        
+            {% if page < total_pages %}
+                <a href="?page={{ page + 1 }}" class="btn btn-primary">Next</a>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+{% endblock %}

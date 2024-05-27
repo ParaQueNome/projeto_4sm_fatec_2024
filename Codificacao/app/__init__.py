@@ -10,7 +10,10 @@ def create_app():
     # Criando instancia da aplicação Flask com o nome da aplicação
     app = Flask(__name__, template_folder='templates')
     bootstrap = Bootstrap5(app)
-    print(PolygonApiService().carregarAcoes())
+    ticker = PolygonApiService().carregarAcoes()
+    print(ticker)
+    for i in ticker:
+        print(i)
     # Importando as rotas da aplicação
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(financeBp, url_prefix='/finance')
