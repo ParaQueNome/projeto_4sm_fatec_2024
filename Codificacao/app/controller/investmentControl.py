@@ -4,9 +4,7 @@ from config import Config
 from flask import url_for
 from flask import session
 from app.services.opeaiApiService.openaiApi import OpenAiClient
-from app.services.financeService.FinanceService import FinanceService
-from app.models.conexao_mongo import Conexao
-from app.repositories.ConexaoRepository import ConexaoRepository
+from app.services.financeService.PolygonApiService import PolygonApiService
 
 investmentBp = Blueprint('trade', __name__, template_folder='templates/trades')
 
@@ -14,6 +12,7 @@ investmentBp = Blueprint('trade', __name__, template_folder='templates/trades')
 def investment():
     if not session.get('usuario'):
         return redirect(url_for('auth.login'))
+    
     
     return render_template('trades/trade.html')
 

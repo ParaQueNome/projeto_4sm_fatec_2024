@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 class OpenAiClient:
     def __init__(self):
         load_dotenv()
-        self.openai = OpenAI(api_key= os.getenv("OPENAI_API_KEY"))
-        #self.openai = OpenAI(api_key= "sk-proj-DaQksQ6EWRteqA7vxbVXT3BlbkFJvYmdoiUXUOqO2d4yFMGE")
+        #self.openai = OpenAI(api_key= os.getenv("OPENAI_API_KEY"))
+        self.openai = OpenAI(api_key= "sk-proj-KZczWi9H11DxXYqOUOXHT3BlbkFJL1eP8yhZdpvOgAtjjFsx")
 
     def userFinances(self, renda,user, **despesa):
         messages =  [
