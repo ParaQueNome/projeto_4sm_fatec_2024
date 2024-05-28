@@ -1,40 +1,55 @@
 {% extends 'base.html' %}
+<head>
+    {% block styles %}
+            <link rel="stylesheet" type="text/css" 
+            href="{{url_for('static', filename='css/login-cadastro.css')}}">
+            <link rel="stylesheet" type="text/css" 
+            href="{{url_for('static', filename='css/base.css')}}">
+            {{ bootstrap.load_css() }}
+    {% endblock %}
+</head>
 
 {% block title %}Cadastro{% endblock %}
 {% block content %}
 
 <div class="animacao">
     <section>
-        <div class="form-box">
-            <div class="form-value">
-                <form method="POST">
-                    {{ form.csrf_token }}
-                    <div class="inputbox">
-                        <ion-icon name="person-outline"></ion-icon>
-                        {{ form.username.label}}
-                        {{ form.username}}
-                    </div>
-                    {% for error in form.username.errors %}
-                            <span class="error">{{ error }}</span>
-                    {% endfor %}
-                    <div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        {{ form.email.label}}
-                        {{ form.email}}
-                    </div>
-                    {% for error in form.email.errors %}
-                            <span class="error">{{ error }}</span>
-                    {% endfor %}
-                    <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        {{ form.password.label}}
-                        {{ form.password}}
-                    </div>
-                    {% for error in form.password.errors %}
-                            <p class="error">{{ error }}</p>
-                    {% endfor %}
-                    <button type="submit" class="btn btn-success">Sign Up</button>
-                </form>
+        <div class="box">
+            <div class="form-box">
+                <div class="form-value">
+                    <form method="POST">
+                        <h2>Criar cadastro</h2>
+                        {{ form.csrf_token }}
+                        <div class="inputbox">
+                            <ion-icon name="person-outline"></ion-icon>
+                            {{ form.username.label}}
+                            {{ form.username}}
+                        </div>
+                        {% for error in form.username.errors %}
+                                <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <div class="inputbox">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            {{ form.email.label}}
+                            {{ form.email}}
+                        </div>
+                        {% for error in form.email.errors %}
+                                <span class="error">{{ error }}</span>
+                        {% endfor %}
+                        <div class="inputbox">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            {{ form.password.label}}
+                            {{ form.password}}
+                        </div>
+                        {% for error in form.password.errors %}
+                                <p class="error">{{ error }}</p>
+                        {% endfor %}
+                        <div class="register">
+                            <p>Ja possui uma conta? <a href="{{url_for('auth.cadastro')}}">Entrar</a></p>
+                        </div>
+                        <button type="submit" class="button btn btn-success">Cadastrar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
