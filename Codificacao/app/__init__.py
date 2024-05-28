@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap5
 from app.controller.authControl import auth_bp
 from app.controller.financeControl import financeBp
 from app.controller.investmentControl import investmentBp
+from app.controller.homepageControl import indexBp
 from flask_wtf.csrf import CSRFProtect
 
 def create_app():
@@ -13,6 +14,7 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(financeBp, url_prefix='/finance')
     app.register_blueprint(investmentBp, url_prefix='/trade')
+    app.register_blueprint(indexBp, url_prefix='')
     # Configurações opcionais da aplicação
     app.config['SECRET_KEY'] = 't%23s342%%@'
     csrf = CSRFProtect(app)

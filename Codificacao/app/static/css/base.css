@@ -1,0 +1,16 @@
+.user_Sair{
+    position: relative;
+    position: absolute; right: 30px;
+    display: flex;
+    flex-basis: auto;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins',sans-serif;
+}
+footer p {
+    margin-bottom: 0rem !important;
+}

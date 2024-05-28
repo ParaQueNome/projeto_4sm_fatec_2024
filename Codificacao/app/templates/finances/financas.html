@@ -1,12 +1,24 @@
 {% extends 'base.html' %}
-
+<head>
+    {% block styles %}
+            <link rel="stylesheet" type="text/css" 
+            href="{{url_for('static', filename='css/controleFinan.css')}}">
+            <link rel="stylesheet" type="text/css" 
+            href="{{url_for('static', filename='css/base.css')}}">
+            {{ bootstrap.load_css() }}
+    {% endblock %}
+</head>
 {% block title %}Cadastro{% endblock %}
-{% block styles %}
-{{super()}}
-{% endblock %}
 {% block content %}
-    <h1>Sua DRE Pessoal</h1>
-
+<div class="financas-geral">
+    <div class="titulo">
+        <h1>Bem vindo a sua DRE pessoal</h1>
+        <p>A Demonstração do Resultado do Exercício (DRE) pessoal é um relatório financeiro que resume as receitas, 
+            despesas e o resultado líquido (lucro ou prejuízo) de uma pessoa física em um determinado período. 
+            Ela é usada para avaliar a saúde financeira pessoal, ajudando a entender quanto se ganha, quanto se gasta e se sobra algum dinheiro (ou se há déficit) no final do período analisado. 
+            É similar à DRE de uma empresa, mas aplicada às finanças individuais.
+        </p>
+    </div>
     {% if finanService %}
     <div class="container mt-4">
         <h1 class="text-center">Demonstração de Resultado do Exercício Pessoal</h1>
@@ -298,4 +310,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
