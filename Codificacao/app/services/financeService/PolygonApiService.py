@@ -8,20 +8,27 @@ class PolygonApiService(RESTClient):
     def __init__(self) -> None:
         load_dotenv()
         super().__init__(api_key=os.getenv("POLYGON_API_KEY"))
+
+    def getDiaUtil(self, dateToCheck):
+        response = requests.get('https://api.polygon.io/v1/marketstatus/upcoming?apiKey=4U16LvuqPJUR1B8gFpAASREdkEqhdVoH')
+        feriados = response.json()
+        for feriado in feriados:
+            if feriado['date'] == dateToCheck.strftime('%Y-%m-%d'):
+                dateToCheck -= timedelta(days=1)
+            
+        if dateToCheck.weekday() == 6:  # Sunday
+            dateToCheck -= timedelta(days=2)
+        elif dateToCheck.weekday() == 0:  # Monday
+            dateToCheck -= timedelta(days=3)
+        
+        return dateToCheck
+
     
     def carregarAcoes(self):
-        date_to_check = datetime.now()
-        # Se hoje é sábado (5) ou domingo (6), buscar a data da última sexta-feira
-        if date_to_check.weekday() == 6:  # Sunday
-            date_to_check -= timedelta(days=2)
-        elif date_to_check.weekday() == 0:  # Monday
-            date_to_check -= timedelta(days=3)
-        else:
-            # Se não for fim de semana, buscar a data do dia anterior
-            date_to_check -= timedelta(days=1)
+        dateToCheck = self.getDiaUtil(datetime.now() - timedelta(days=1))
         exchanges = {}
-        dailyExchanges = self.get_grouped_daily_aggs(date_to_check.strftime('%Y-%m-%d'))
-        tickerDetails = requests.get('https://api.polygon.io/v3/reference/tickers?active=true&limit=1000&apiKey=4U16LvuqPJUR1B8gFpAASREdkEqhdVoH')
+        dailyExchanges = self.get_grouped_daily_aggs(dateToCheck.strftime('%Y-%m-%d'))
+        tickerDetails = requests.get('https://api.polygon.io/v3/reference/tickers?active=true&limit=250&apiKey=4U16LvuqPJUR1B8gFpAASREdkEqhdVoH')
         for ticker in tickerDetails.json()['results']:
             exchange = []
             for price in dailyExchanges:
