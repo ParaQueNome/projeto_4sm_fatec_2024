@@ -20,7 +20,6 @@ def finance():
     connRepository = ConexaoRepository(conexao) 
     finanService = FinanceService(connRepository)
     if request.method == 'POST':
-        print(form.data)
         data_receitas = {'renda': form.data['renda'], 'nome_receita': form.data['nome_receita']}
         finanService.inserirReceitas(session.get('email'), data_receitas)
         data_gastos = {'nome_gasto':form.data['nome_gasto'], 'valor': form.data['valor']}

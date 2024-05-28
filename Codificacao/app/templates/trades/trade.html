@@ -44,7 +44,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mt-3">
+    <div class="container mt-3 mb-3">
         <div class="row">
             {% for ticker, details in exchange.items() %}
             <div class="col-md-6">
@@ -54,14 +54,14 @@
                     </button>
                     <div class="ticker-details">
                         <!-- Detalhes da ação -->
-                        <div class="ticker-detail-item">Open: {{ details[1].open }}</div>
-                        <div class="ticker-detail-item">High: {{ details[1].high }}</div>
-                        <div class="ticker-detail-item">Low: {{ details[1].low }}</div>
-                        <div class="ticker-detail-item">Close: {{ details[1].close }}</div>
+                        <div class="ticker-detail-item">Preço Abertura: {{ details[1].open }}</div>
+                        <div class="ticker-detail-item">Preço Alta: {{ details[1].high }}</div>
+                        <div class="ticker-detail-item">Preço de Baixa: {{ details[1].low }}</div>
+                        <div class="ticker-detail-item">Fechamento: {{ details[1].close }}</div>
                         <div class="ticker-detail-item">Volume: {{ details[1].volume }}</div>
-                        <div class="ticker-detail-item">VWAP: {{ details[1].vwap }}</div>
-                        <div class="ticker-detail-item">Timestamp: {{ details[1].timestamp }}</div>
-                        <div class="ticker-detail-item">Transactions: {{ details[1].transactions }}</div>
+                        <div class="ticker-detail-item">Preço Médio Por Vol: {{ details[1].vwap }}</div>
+                        <div class="ticker-detail-item">Tempo Abertura: {{ details[1].timestamp }} s</div>
+                        <div class="ticker-detail-item">Quantidade Transações: {{ details[1].transactions }}</div>
                     </div>
                 </div>
             </div>

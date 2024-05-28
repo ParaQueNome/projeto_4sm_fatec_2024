@@ -28,7 +28,7 @@ class PolygonApiService(RESTClient):
         dateToCheck = self.getDiaUtil(datetime.now() - timedelta(days=1))
         exchanges = {}
         dailyExchanges = self.get_grouped_daily_aggs(dateToCheck.strftime('%Y-%m-%d'))
-        tickerDetails = requests.get('https://api.polygon.io/v3/reference/tickers?active=true&limit=250&apiKey=4U16LvuqPJUR1B8gFpAASREdkEqhdVoH')
+        tickerDetails = requests.get('https://api.polygon.io/v3/reference/tickers?active=true&limit=1000&apiKey=4U16LvuqPJUR1B8gFpAASREdkEqhdVoH')
         for ticker in tickerDetails.json()['results']:
             exchange = []
             for price in dailyExchanges:

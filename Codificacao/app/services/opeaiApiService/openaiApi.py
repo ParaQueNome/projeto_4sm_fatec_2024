@@ -22,3 +22,5 @@ class OpenAiClient:
         messages.append({'role': 'assistant', 'content': answer.choices[0].message.content})
         return answer.choices[0].message.content
     
+    def userExchanges(self, *user, **exchanges):
+        print("trabalhando nisso...")
