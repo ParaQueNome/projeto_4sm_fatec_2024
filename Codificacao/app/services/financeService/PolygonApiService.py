@@ -9,7 +9,7 @@ class PolygonApiService(RESTClient):
         load_dotenv()
         super().__init__(api_key=os.getenv("POLYGON_API_KEY"))
 
-    def getDiaUtil(self, dateToCheck):
+    def _getDiaUtil(self, dateToCheck):
         response = requests.get('https://api.polygon.io/v1/marketstatus/upcoming?apiKey=4U16LvuqPJUR1B8gFpAASREdkEqhdVoH')
         feriados = response.json()
         for feriado in feriados:
@@ -25,7 +25,7 @@ class PolygonApiService(RESTClient):
 
     
     def carregarAcoes(self):
-        dateToCheck = self.getDiaUtil(datetime.now() - timedelta(days=1))
+        dateToCheck = self._getDiaUtil(datetime.now() - timedelta(days=1))
         exchanges = {}
         dailyExchanges = self.get_grouped_daily_aggs(dateToCheck.strftime('%Y-%m-%d'))
         tickerDetails = requests.get('https://api.polygon.io/v3/reference/tickers?active=true&limit=1000&apiKey=4U16LvuqPJUR1B8gFpAASREdkEqhdVoH')
@@ -38,6 +38,6 @@ class PolygonApiService(RESTClient):
                     exchanges[price.ticker] = exchange
 
         return exchanges
-        
+    
     
     

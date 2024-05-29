@@ -2,11 +2,12 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
+
 class OpenAiClient:
     def __init__(self):
         load_dotenv()
-        #self.openai = OpenAI(api_key= os.getenv("OPENAI_API_KEY"))
-        self.openai = OpenAI(api_key= "sk-proj-KZczWi9H11DxXYqOUOXHT3BlbkFJL1eP8yhZdpvOgAtjjFsx")
+        self.openai = OpenAI(api_key= os.getenv("OPENAI_API_KEY"))
+        #self.openai = OpenAI(api_key= "sk-proj-KZczWi9H11DxXYqOUOXHT3BlbkFJL1eP8yhZdpvOgAtjjFsx")
 
     def userFinances(self, renda,user, **despesa):
         messages =  [
@@ -22,5 +23,17 @@ class OpenAiClient:
         messages.append({'role': 'assistant', 'content': answer.choices[0].message.content})
         return answer.choices[0].message.content
     
-    def userExchanges(self, *user, **exchanges):
-        print("trabalhando nisso...")
+    def userExchanges(self, renda, gastos,user, **exchanges):
+        messages = [
+            {'role': 'system', 'content': 'Você é um assistente Financeiro que vai analisar com base nos dados de receita, gastos e lucro/prejuizo do usuario se é valido ele investir em alguma ação na bolsa de valores. Para isso, receberá o resultado da previsao de preço de fechamento de uma rede neural de determinada ação, assim como o nome da empresa. Você DEVE ser o mais pessoal possível, imitando o comportamento de um humano, sem parecer que é uma máquina falando'},
+            {'role': 'user', 'content': f'A renda é de R${renda} e os gastos são R$ {gastos}, usuario: {user}. As informacoes de nome da empresa e valor de fechamento : {exchanges}'}
+        ]
+        answer = self.openai.chat.completions.create(
+            model = "gpt-4",
+            messages= messages,
+            max_tokens= 400,
+            temperature = 0.6
+        )
+        messages.append({'role': 'assistant', 'content': answer.choices[0].message.content})
+        return answer.choices[0].message.content
+        

@@ -10,7 +10,7 @@ api_key = '4U16LvuqPJUR1B8gFpAASREdkEqhdVoH'
 
 # Função para obter dados históricos de preços de fechamento de uma ação específica
 def obter_dados_historicos(symbol):
-    url = f'https://api.polygon.io/v2/aggs/ticker/{symbol}/range/1/day/2000-01-01/2023-12-31?apiKey={api_key}'
+    url = f'https://api.polygon.io/v2/aggs/grouped/locale/us/market/stocks/2000-01-01/2023-12-31?adjusted=true&apiKey={api_key}'
     response = requests.get(url)
     data = response.json()['results']
     df = pd.DataFrame(data)
@@ -37,7 +37,7 @@ X = df[['c', 'o', 'h', 'l', 'v']].values[:-1]  # Preços de fechamento, abertura
 
 # Selecionar o preço de fechamento do próximo dia como alvo (target)
 y = df['c'].values[1:]  # Preços de fechamento deslocados em 1 dia para frente
-
+print(y)
 # Dividir os dados em conjuntos de treinamento e teste
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
