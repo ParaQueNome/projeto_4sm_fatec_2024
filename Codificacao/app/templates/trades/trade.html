@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block title %}Cadastro{% endblock %}
 {% block styles %}
 {{super()}}
@@ -49,19 +50,18 @@
             {% for ticker, details in exchange.items() %}
             <div class="col-md-6">
                 <div class="ticker-card">
-                    <button class="btn btn-primary w-100" id="chat-toggle-btn">
-                        {{ ticker }} - {{ details[0] }}
+                    <button class="btn btn-primary w-100 chat-toggle-btn" data-ticker="{{ ticker }}" data-details="{{ details }}">
+                        {{ details['name'] }}
                     </button>
                     <div class="ticker-details">
                         <!-- Detalhes da ação -->
-                        <div class="ticker-detail-item">Preço Abertura: {{ details[1].open }}</div>
-                        <div class="ticker-detail-item">Preço Alta: {{ details[1].high }}</div>
-                        <div class="ticker-detail-item">Preço de Baixa: {{ details[1].low }}</div>
-                        <div class="ticker-detail-item">Fechamento: {{ details[1].close }}</div>
-                        <div class="ticker-detail-item">Volume: {{ details[1].volume }}</div>
-                        <div class="ticker-detail-item">Preço Médio Por Vol: {{ details[1].vwap }}</div>
-                        <div class="ticker-detail-item">Tempo Abertura: {{ details[1].timestamp }} s</div>
-                        <div class="ticker-detail-item">Quantidade Transações: {{ details[1].transactions }}</div>
+                        <div class="ticker-detail-item">Preço Abertura: {{ details['open'] }}</div>
+                        <div class="ticker-detail-item">Preço Alta: {{ details['high'] }}</div>
+                        <div class="ticker-detail-item">Preço de Baixa: {{ details['low'] }}</div>
+                        <div class="ticker-detail-item">Fechamento: {{ details['close'] }}</div>
+                        <div class="ticker-detail-item">Volume: {{ details['volume'] }}</div>
+                        <div class="ticker-detail-item">Preço Médio Por Vol: {{ details['vwap'] }}</div>
+                        <div class="ticker-detail-item">Quantidade Transações: {{ details['transactions'] }}</div>
                     </div>
                 </div>
             </div>
@@ -82,4 +82,50 @@
         </div>
     </div>
     </div>
+    <div class="modal fade" id="modal-chat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Assistente Financeiro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" id="chat-body">
+                    <!-- Aqui serão exibidas as respostas do assistente financeiro -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.chat-toggle-btn').click(function() {
+                const ticker = $(this).data('ticker');
+                const details = $(this).data('details');
+                const csrf_token = "{{ csrf_token() }}";
+                console.log(ticker);
+                console.log(details);
+    
+                $.ajax({
+                    type: 'POST',
+                    url: '/trade/neural',
+                    contentType: 'application/json',
+                    headers:{
+                        'X-CSRFToken': csrf_token
+                    },
+                    data: JSON.stringify({details: details}),
+                    success: function(data) {
+                        $('#chat-body').html(`
+                            <p>Ticker: ${data.details}</p>
+                            <p>Detalhes:</p>
+                            <!-- Adicione mais elementos conforme necessário para exibir outras informações processadas -->
+                        `);
+                        $('#modal-chat').modal('show');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Houve um problema com a operação:', error);
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}

@@ -30,11 +30,18 @@ class PolygonApiService(RESTClient):
         dailyExchanges = self.get_grouped_daily_aggs(dateToCheck.strftime('%Y-%m-%d'))
         tickerDetails = requests.get('https://api.polygon.io/v3/reference/tickers?active=true&limit=1000&apiKey=4U16LvuqPJUR1B8gFpAASREdkEqhdVoH')
         for ticker in tickerDetails.json()['results']:
-            exchange = []
+            exchange = {}
             for price in dailyExchanges:
                 if price.ticker == ticker['ticker']:
-                    exchange.append(ticker['name'])
-                    exchange.append(price)
+                    exchange['name'] = ticker['name']
+                    exchange['ticker'] = price.ticker
+                    exchange['open'] = price.open
+                    exchange['high'] = price.high
+                    exchange['low'] = price.low
+                    exchange['close'] = price.close
+                    exchange['volume'] = price.volume
+                    exchange['vwap'] = price.vwap
+                    exchange['transactions'] = price.transactions
                     exchanges[price.ticker] = exchange
 
         return exchanges
