@@ -100,11 +100,13 @@
         $(document).ready(function() {
             $('.chat-toggle-btn').click(function() {
                 const ticker = $(this).data('ticker');
-                const details = $(this).data('details');
+                let details = $(this).data('details');
                 const csrf_token = "{{ csrf_token() }}";
                 console.log(ticker);
+                if (typeof details === 'string') {
+                details = details.replace(/'/g, '"');
+                }
                 console.log(details);
-    
                 $.ajax({
                     type: 'POST',
                     url: '/trade/neural',
@@ -115,9 +117,7 @@
                     data: JSON.stringify({details: details}),
                     success: function(data) {
                         $('#chat-body').html(`
-                            <p>Ticker: ${data.details}</p>
-                            <p>Detalhes:</p>
-                            <!-- Adicione mais elementos conforme necessário para exibir outras informações processadas -->
+                            <p>${data.details}</p>
                         `);
                         $('#modal-chat').modal('show');
                     },

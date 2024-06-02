@@ -7,7 +7,7 @@ class OpenAiClient:
     def __init__(self):
         load_dotenv()
         self.openai = OpenAI(api_key= os.getenv("OPENAI_API_KEY"))
-        #self.openai = OpenAI(api_key= "sk-proj-KZczWi9H11DxXYqOUOXHT3BlbkFJL1eP8yhZdpvOgAtjjFsx")
+        #self.openai = OpenAI(api_key= "sk-proj-8k1wdSxKS3DdhvhHqJtAT3BlbkFJaSMrm4k6m4dUs7d8FnM9")
 
     def userFinances(self, renda,user, **despesa):
         messages =  [

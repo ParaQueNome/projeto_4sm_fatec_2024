@@ -11,11 +11,6 @@ class Conexao:
             
         collection.insert_one(kwargs)
 
-    def update(self ,collection_name, **kwargs)-> None:
-        collection = self.db[collection_name]
-
-        collection.update_one(kwargs)
-
     def insertDespesas(self, collection_name,condicao, **kwargs) -> None:
         collection = self.db[collection_name]
         collection.update_one(condicao, {'$push': kwargs}, upsert=True)

@@ -33,15 +33,15 @@ class PolygonApiService(RESTClient):
             exchange = {}
             for price in dailyExchanges:
                 if price.ticker == ticker['ticker']:
-                    exchange['name'] = ticker['name']
-                    exchange['ticker'] = price.ticker
-                    exchange['open'] = price.open
-                    exchange['high'] = price.high
-                    exchange['low'] = price.low
-                    exchange['close'] = price.close
-                    exchange['volume'] = price.volume
-                    exchange['vwap'] = price.vwap
-                    exchange['transactions'] = price.transactions
+                    exchange["name"] = ticker['name']
+                    exchange["ticker"] = price.ticker
+                    exchange["open"] = price.open
+                    exchange["high"] = price.high
+                    exchange["low"] = price.low
+                    exchange["close"] = price.close
+                    exchange["volume"] = price.volume
+                    exchange["vwap"] = price.vwap
+                    exchange["transactions"] = price.transactions
                     exchanges[price.ticker] = exchange
 
         return exchanges

@@ -5,7 +5,6 @@ from app.controller.financeControl import financeBp
 from app.controller.investmentControl import investmentBp
 from app.controller.homepageControl import indexBp
 from flask_wtf.csrf import CSRFProtect
-from app.services.financeService.RedeNeuralService import RedeNeuralService
 
 def create_app():
     # Criando instancia da aplicação Flask com o nome da aplicação

@@ -45,6 +45,7 @@ class FinanceService:
     def totalGastos(self, usuario):
         dictEmail = {'email': usuario}
         dados = self.conexao.select("usuario", **dictEmail)
+        print(dados)
         despesas = dados['despesas']
         descontos = despesas['gastos']
         total = 0
