@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Definir PythonPath
       run: |
-        export PYTHONPATH=$PYTHONPATH:$GITHUB_WORKSPACE/Codificacao
+        $env:PYTHONPATH += ";" + $env:GITHUB_WORKSPACE + "\Codificacao"
         
     - name: Ambiente
       uses: actions/setup-python@v2
