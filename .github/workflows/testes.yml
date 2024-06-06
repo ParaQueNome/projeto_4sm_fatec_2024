@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Definir PythonPath
       run: |
-        $env:PYTHONPATH += ";" + $env:GITHUB_WORKSPACE + "\Codificacao"
+        $env:PYTHONPATH += ";D:\a\projeto_4sm_fatec_2024\projeto_4sm_fatec_2024\Codificacao"
         
     - name: Ambiente
       uses: actions/setup-python@v2
