@@ -19,6 +19,10 @@ jobs:
         $env:PYTHONPATH += ";" + $env:GITHUB_WORKSPACE + "\Codificacao"
     - name: Verificar PYTHONPATH
       run: echo $env:PYTHONPATH
+      
+    - name: Listar conteúdo do diretório
+      run: |
+        dir $env:GITHUB_WORKSPACE\Codificacao
         
     - name: Ambiente
       uses: actions/setup-python@v2
