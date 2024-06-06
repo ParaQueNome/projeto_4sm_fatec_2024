@@ -16,7 +16,11 @@ jobs:
       uses: actions/checkout@v2
       with:
         python-version: 3.x
-
+    
+    - name: Definir PYTHONPATH
+      run: |
+        export PYTHONPATH=$PYTHONPATH:GITHUB_WORKSPACE/Codificacao
+        
     - name: Instalar dependencias
       run: |
         python -m pip install --upgrade pip
