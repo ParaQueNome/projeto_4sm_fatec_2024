@@ -17,6 +17,8 @@ jobs:
     - name: Definir PythonPath
       run: |
         $env:PYTHONPATH += ";" + $env:GITHUB_WORKSPACE + "\Codificacao"
+    - name: Verificar PYTHONPATH
+      run: echo $env:PYTHONPATH
         
     - name: Ambiente
       uses: actions/setup-python@v2
