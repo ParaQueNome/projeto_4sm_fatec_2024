@@ -17,8 +17,10 @@ jobs:
     - name: Definir PythonPath
       run: |
         $env:PYTHONPATH += ";" + $env:GITHUB_WORKSPACE + "\Codificacao"
+        
     - name: Verificar PYTHONPATH
-      run: echo $env:PYTHONPATH
+      run: Write-Host $env:PYTHONPATH
+      shell: powershell
       
     - name: Listar conteúdo do diretório
       run: |
