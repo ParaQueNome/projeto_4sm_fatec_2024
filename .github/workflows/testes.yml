@@ -14,12 +14,16 @@ jobs:
     steps:
     - name: Checkout do codigo
       uses: actions/checkout@v2
+    - name: Definir PythonPath
+      run: |
+        export PYTHONPATH=$PYTHONPATH:$GITHUB_WORKSPACE/Codificacao
+        
+    - name: Ambiente
+      uses: actions/setup-python@v2
       with:
         python-version: 3.x
     
-    - name: Definir PYTHONPATH
-      run: |
-        export PYTHONPATH=$PYTHONPATH:GITHUB_WORKSPACE/Codificacao
+  
         
     - name: Instalar dependencias
       run: |
