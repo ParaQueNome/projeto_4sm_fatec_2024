@@ -46,5 +46,21 @@ class PolygonApiService(RESTClient):
 
         return exchanges
     
-    
+    def tickerNews(self):
+        response = requests.get("https://api.polygon.io/v2/reference/news?limit=100&apiKey=4U16LvuqPJUR1B8gFpAASREdkEqhdVoH")
+        formDict = {}
+        for ticker in response.json()['results']:
+           rawDict = {}
+           rawDict["publisher"] = ticker['publisher']
+           rawDict["title"] = ticker['title']
+           rawDict["author"] = ticker['author']
+           rawDict["published_utc"] = ticker['published_utc']
+           rawDict["article_url"] = ticker['article_url']
+           rawDict["tickers"] = ticker['tickers']
+           rawDict["image_url"] = ticker['image_url']
+           rawDict["description"] = ticker['description']
+           formDict[ticker['id']] = rawDict
+
+
+        return formDict
     
