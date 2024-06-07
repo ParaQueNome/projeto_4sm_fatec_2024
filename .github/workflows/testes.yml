@@ -22,8 +22,7 @@ jobs:
         python-version: 3.x
         
     - name: Definir PythonPath
-      run: |
-        $env:PYTHONPATH += ";" + $env:GITHUB_WORKSPACE + "\Codificacao"
+      working-directory: Codificacao
         
     - name: Instalar dependencias
       run: |
