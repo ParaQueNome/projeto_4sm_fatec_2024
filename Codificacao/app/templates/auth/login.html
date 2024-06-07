@@ -65,7 +65,7 @@ referrerpolicy="no-referrer"
 
             input.addEventListener('focus', function() {
                 this.parentNode.querySelector('label').classList.add('hidden');
-                generate(); circle()
+                
             });
             input.addEventListener('blur', function() {
                 if (this.value === '') {
@@ -77,7 +77,7 @@ referrerpolicy="no-referrer"
 </script>
 <script>
 let container = document.querySelector(".animacao");
-for (var i = 0; i <= 80; i++) {
+for (var i = 0; i <= 900; i++) {
   let blocks = document.createElement("div");
   blocks.classList.add("block");
   container.appendChild(blocks);
@@ -92,17 +92,17 @@ function generate() {
   anime({
     targets: ".block",
     translateX: function () {
-      return anime.random(-700, 700);
+      return anime.random(-900, 900);
     },
     translateY: function () {
-      return anime.random(-500, 500);
+      return anime.random(-900, 900);
     },
     scale: function () {
       return anime.random(1, 5);
     },
   });
 }
-generate();
+generate(); circle()
 </script>
 {% endblock %}  
 

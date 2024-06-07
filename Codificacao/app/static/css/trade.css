@@ -1,0 +1,62 @@
+.ticker-card {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+}
+.ticker-details {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.ticker-detail-item {
+    width: 48%;
+    margin-bottom: 0.5rem;
+}
+.container {
+    max-width: 1200px; /* Ajuste a largura máxima do container */
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.pagination a {
+    margin: 0 5px;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.pagination a.active {
+    background-color: #007bff;
+    color: white;
+}
+.animacao {
+
+    overflow: hidden;
+    display: flex;
+    z-index: 1;
+    background-color: #343a40;
+}
+.animacao .block {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #444;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+}
+.animacao.circle .block {
+    border-radius: 50%;
+}
+.animacao .block:nth-child(3n + 1) {
+    background: #04260359;
+}
+.animacao .block:nth-child(3n + 2) {
+    background: #0cbf061c;
+}
+.animacao .block:nth-child(3n + 3) {
+    background: #73f56f1e;
+}

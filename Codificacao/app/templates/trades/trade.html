@@ -1,50 +1,19 @@
 {% extends 'base.html' %}
 
+<head>
+    {% block styles %}
+            <link rel="stylesheet" type="text/css" 
+            href="{{url_for('static', filename='css/trade.css')}}">
+            <link rel="stylesheet" type="text/css" 
+            href="{{url_for('static', filename='css/base.css')}}">
+            {{ bootstrap.load_css() }}
+    {% endblock %}
+</head>
 
-{% block title %}Cadastro{% endblock %}
-{% block styles %}
-{{super()}}
-<style>
-    .ticker-card {
-        margin-bottom: 1rem;
-        padding: 1rem;
-        border: 1px solid #ddd;
-        border-radius: 0.5rem;
-        background-color: #f8f9fa;
-    }
-    .ticker-details {
-        margin-top: 0.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    .ticker-detail-item {
-        width: 48%;
-        margin-bottom: 0.5rem;
-    }
-    .container {
-        max-width: 1200px; /* Ajuste a largura máxima do container */
-    }
-    .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 1rem;
-    }
-    .pagination a {
-        margin: 0 5px;
-        padding: 8px 16px;
-        text-decoration: none;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
-    .pagination a.active {
-        background-color: #007bff;
-        color: white;
-    }
-</style>
-{% endblock %}
+{% block title %}Investimentos{% endblock %}
 
 {% block content %}
+<div class="animacao">
     <div class="container mt-3 mb-3">
         <div class="row">
             {% for ticker, details in exchange.items() %}
@@ -95,6 +64,7 @@
             </div>
         </div>
     </div>
+</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -127,5 +97,44 @@
                 });
             });
         });
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+    integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    ></script>
+    <script>
+        let container = document.querySelector(".animacao");
+        for (var i = 0; i <= 100; i++) {
+          let blocks = document.createElement("div");
+          blocks.classList.add("block");
+          container.appendChild(blocks);
+        }
+        
+        function circle() {
+          let circleBtn = document.querySelector(".circleBtn");
+          container.classList.toggle("circle");
+        }
+        
+        function generate() {
+          anime({
+            targets: ".block",
+            translateX: function () {
+              return anime.random(-900, 900);
+            },
+            translateY: function () {
+              return anime.random(-900, 900);
+            },
+            scale: function () {
+              return anime.random(1, 5);
+            },
+          });
+        }
+        generate();
+
+        setInterval(generate, 5000);
     </script>
 {% endblock %}
