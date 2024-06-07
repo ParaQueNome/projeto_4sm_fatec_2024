@@ -8,24 +8,32 @@ section{
     background-size: cover;
     z-index: 2;
 }
-.form-box{
+.form-box { 
     position: relative;
-    width: 400px;
-    height: 450px;
+    width: 430px;
+    height: 480px;
     background: transparent;
     border-radius: 20px;
     backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
-    align-items: center;
-    opacity: 100%;
-    background-color: rgba(0, 0, 0, 0.801);
-    z-index: 2;
-
+    background-color: rgb(0, 0, 0);
+    z-index: 3;
+    transition: width 0.1s ease, height 0.1s ease, border-radius 0.1s ease; 
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
+.form-box:hover {
+    width: 410px;
+    height: 460px;
+    border-radius: 20px;
 }
 .form-box h2{
     font-size: 2em;
     color: #fff;
+    text-align: center;
+}
+.form-box button{
     text-align: center;
 }
 .sub {
@@ -97,6 +105,7 @@ section{
     height: 40px;
     border-radius: 40px;
     position: relative;
+    align-items: center;
 }
 .register{
     font-size: .9em;
@@ -134,18 +143,17 @@ section{
   border-radius: 50%;
 }
 .animacao .block:nth-child(3n + 1) {
-  background: #042603;
+  background: #04260359;
 }
 .animacao .block:nth-child(3n + 2) {
-  background: #0cbf063d;
+  background: #0cbf061c;
 }
 .animacao .block:nth-child(3n + 3) {
-  background: #74f56f3b;
+  background: #73f56f1e;
 }
 .animacao button {
   position: relative;
   z-index: 1;
-  margin: 10px;
   border: none;
   font-size: 1.2em;
   cursor: pointer;
@@ -156,8 +164,8 @@ section{
 }
 .box {
     position: relative;
-    width: 410px;
-    height: 460px;
+    width: 430px;
+    height: 480px;
     border-radius: 30px;
     display: flex;
     justify-content: center;

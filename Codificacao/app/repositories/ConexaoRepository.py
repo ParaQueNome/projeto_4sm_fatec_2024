@@ -7,7 +7,6 @@ class ConexaoRepository:
     
 
     def insert(self, collection_name, **kwargs):
-        print(kwargs)
         self.conexao.insert(collection_name, **kwargs)
 
     def update(self, collection_name, **kwargs):
