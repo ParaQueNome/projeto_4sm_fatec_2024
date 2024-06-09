@@ -179,7 +179,6 @@ section{
     width: 1000px;
     height: 200%;
     background: conic-gradient(from 0deg, #0cbf06,#035e00,#1d5c1b, #042603);
-    /* background: conic-gradient(from 0deg, blue, red ,green, purple, pink, yellow, orange); */
     animation: animate 3s linear infinite;
 }
 .box::after{

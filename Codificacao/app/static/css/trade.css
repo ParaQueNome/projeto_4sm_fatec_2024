@@ -1,3 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+
+.cinzel {
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-weight: 400px;
+    font-style: normal;
+}
+.card-flip {
+    position: relative;
+    justify-content: center;
+    cursor: pointer;
+    perspective: 1000px;
+    z-index: 2;
+}
+
+.card-frente,
+.card-verso { 
+    height: 276px;
+    width: 530px;
+    border-radius: 15px;
+    transition: all 0.9s ease;
+    backface-visibility: hidden;
+    display: flex;
+    position: absolute;
+    padding: 5%;
+}
+
+.card-frente {
+    background-color: #040303;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    font-size: 25px;
+}
+.card-verso {
+    background-color: #035e00;
+    color: #040303;
+    transform: rotateY(-180deg);
+    z-index: 1;
+    
+}
+.card-verso  button {
+    color: #040303;
+}
+
+.card-verso  button:hover {
+    color: gray;
+}
+
+.card-flip:hover .card-frente {
+    transform: rotateY(180deg);
+}
+
+.card-flip:hover .card-verso {
+    transform: rotateY(0deg);
+
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-bottom: 300px;
+}
+
 .ticker-card {
     margin-bottom: 1rem;
     padding: 1rem;
@@ -12,11 +82,16 @@
     justify-content: space-between;
 }
 .ticker-detail-item {
-    width: 48%;
-    margin-bottom: 0.5rem;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+.ticker-detail-item p {
+    font-size: 15px;
 }
 .container {
-    max-width: 1200px; /* Ajuste a largura máxima do container */
+    max-width: 1200px;
 }
 .pagination {
     display: flex;
@@ -29,13 +104,14 @@
     text-decoration: none;
     border: 1px solid #ddd;
     border-radius: 4px;
+    position: relative;
+    z-index: 3;
 }
 .pagination a.active {
     background-color: #007bff;
     color: white;
 }
 .animacao {
-
     overflow: hidden;
     display: flex;
     z-index: 1;

@@ -13,24 +13,36 @@
 {% block title %}Investimentos{% endblock %}
 
 {% block content %}
+<h1>click em mais para ter uma analize personalizada</h1>
 <div class="animacao">
     <div class="container mt-3 mb-3">
         <div class="row">
             {% for ticker, details in exchange.items() %}
             <div class="col-md-6">
-                <div class="ticker-card">
-                    <button class="btn btn-primary w-100 chat-toggle-btn" data-ticker="{{ ticker }}" data-details="{{ details }}">
+                <div class="card-flip">
+                    <p class="card-frente cinzel" data-ticker="{{ ticker }}" data-details="{{ details }}">
                         {{ details['name'] }}
-                    </button>
-                    <div class="ticker-details">
-                        <!-- Detalhes da ação -->
-                        <div class="ticker-detail-item">Preço Abertura: {{ details['open'] }}</div>
-                        <div class="ticker-detail-item">Preço Alta: {{ details['high'] }}</div>
-                        <div class="ticker-detail-item">Preço de Baixa: {{ details['low'] }}</div>
-                        <div class="ticker-detail-item">Fechamento: {{ details['close'] }}</div>
-                        <div class="ticker-detail-item">Volume: {{ details['volume'] }}</div>
-                        <div class="ticker-detail-item">Preço Médio Por Vol: {{ details['vwap'] }}</div>
-                        <div class="ticker-detail-item">Quantidade Transações: {{ details['transactions'] }}</div>
+                    </p>
+                    <div class="card-verso">
+                        <div class="ticker-detail-item">
+                            <p>Preço Abertura:{{ details['open'] }}</p>
+                            <p>Preço Alta: {{ details['high'] }}</p>
+                            <p>Preço de Baixa: {{ details['low'] }}</p>
+                        </div>    
+                        <div class="ticker-detail-item">
+                            <p>Fechamento:{{ details['close'] }}</p>
+                            <p>Volume:{{ details['volume'] }}</p>
+                            <p>Preço Médio Por Vol:{{ details['vwap'] }}</p>
+                        </div>
+                        <div class="ticker-detail-item">
+                            <p>Quantidade Transações: {{ details['transactions'] }}</p>
+                            <p></p>
+                            <p><button class="btn btn-transparent btn-borderless chat-toggle-btn" data-ticker="{{ ticker }}" data-details="{{ details }}">
+                                Mais...
+                            </button>
+                            </p>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -97,44 +109,5 @@
                 });
             });
         });
-    </script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
-    integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-    ></script>
-    <script>
-        let container = document.querySelector(".animacao");
-        for (var i = 0; i <= 100; i++) {
-          let blocks = document.createElement("div");
-          blocks.classList.add("block");
-          container.appendChild(blocks);
-        }
-        
-        function circle() {
-          let circleBtn = document.querySelector(".circleBtn");
-          container.classList.toggle("circle");
-        }
-        
-        function generate() {
-          anime({
-            targets: ".block",
-            translateX: function () {
-              return anime.random(-900, 900);
-            },
-            translateY: function () {
-              return anime.random(-900, 900);
-            },
-            scale: function () {
-              return anime.random(1, 5);
-            },
-          });
-        }
-        generate();
-
-        setInterval(generate, 5000);
     </script>
 {% endblock %}
