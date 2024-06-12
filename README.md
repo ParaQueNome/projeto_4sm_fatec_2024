@@ -1,5 +1,5 @@
-# Projeto Integrador: Financ.IA
 
+<a href="https://git.io/typing-svg"><img align="center" src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=30&pause=1000&color=00FFFF&center=true&vCenter=true&width=1000&lines=# Projeto Integrador: Financ.IA" alt="Typing SVG" /></a>
 ### Guilherme Afonso;
 ### Pedro Beck.
 
