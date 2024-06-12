@@ -6,12 +6,19 @@
     font-weight: 400px;
     font-style: normal;
 }
+h1{
+    backface-visibility: hidden;
+}
 .card-flip {
-    position: relative;
     justify-content: center;
     cursor: pointer;
     perspective: 1000px;
     z-index: 2;
+    transform-style: preserve-3d ;
+    transition: all .9s;
+    transform: translateZ(0);
+    transition-behavior: smooth;
+
 }
 
 .card-frente,
@@ -19,7 +26,6 @@
     height: 276px;
     width: 530px;
     border-radius: 15px;
-    transition: all 0.9s ease;
     backface-visibility: hidden;
     display: flex;
     position: absolute;
@@ -31,16 +37,21 @@
     color: #fff;
     align-items: center;
     justify-content: center;
-    z-index: 2;
     font-size: 25px;
+    transform: rotateY(180deg);
 }
 .card-verso {
     background-color: #035e00;
     color: #040303;
-    transform: rotateY(-180deg);
-    z-index: 1;
+    transform: rotateY(0deg);
+    margin-left: 16.9%;
+    
     
 }
+.flip {
+    transform: rotateY(180deg);
+}
+
 .card-verso  button {
     color: #040303;
 }
@@ -49,14 +60,6 @@
     color: gray;
 }
 
-.card-flip:hover .card-frente {
-    transform: rotateY(180deg);
-}
-
-.card-flip:hover .card-verso {
-    transform: rotateY(0deg);
-
-}
 .row {
     display: flex;
     flex-wrap: wrap;

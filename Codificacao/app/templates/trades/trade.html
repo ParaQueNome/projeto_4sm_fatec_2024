@@ -19,11 +19,11 @@
         <div class="row">
             {% for ticker, details in exchange.items() %}
             <div class="col-md-6">
-                <div class="card-flip">
+                <div class="card-flip flip">
                     <p class="card-frente cinzel" data-ticker="{{ ticker }}" data-details="{{ details }}">
                         {{ details['name'] }}
                     </p>
-                    <div class="card-verso">
+                    <div class="card-verso ">
                         <div class="ticker-detail-item">
                             <p>Preço Abertura:{{ details['open'] }}</p>
                             <p>Preço Alta: {{ details['high'] }}</p>
@@ -107,6 +107,13 @@
                         console.error('Houve um problema com a operação:', error);
                     }
                 });
+            });
+        });
+    </script>
+    <script>
+        document.querySelectorAll('.card-flip').forEach(card => {
+            card.addEventListener('click', () => {
+            card.classList.toggle('flip');
             });
         });
     </script>
