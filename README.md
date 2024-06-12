@@ -1,4 +1,4 @@
-# Projeto Integrador.
+# Projeto Integrador: Financ.IA
 
 ### Guilherme Afonso;
 ### Pedro Beck.
