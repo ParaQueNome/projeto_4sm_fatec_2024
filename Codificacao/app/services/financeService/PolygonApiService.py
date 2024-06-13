@@ -58,7 +58,7 @@ class PolygonApiService(RESTClient):
            rawDict["article_url"] = ticker['article_url']
            rawDict["tickers"] = ticker['tickers']
            rawDict["image_url"] = ticker['image_url']
-           rawDict["description"] = ticker['description']
+           rawDict["description"] = ticker.get('description')
            formDict[ticker['id']] = rawDict
 
 

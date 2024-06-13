@@ -33,3 +33,7 @@ footer p {
 #nbarmax{
     display: flex;
 }
+.bg-darkgray{
+    background-color: #0e0f11;
+    border-bottom: 3px solid #363a42;
+}

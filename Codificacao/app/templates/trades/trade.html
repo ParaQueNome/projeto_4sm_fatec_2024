@@ -13,36 +13,41 @@
 {% block title %}Investimentos{% endblock %}
 
 {% block content %}
-<h1>click em mais para ter uma analize personalizada</h1>
-<div class="animacao">
+<div class="text-trade">
+<h1>Veja as principais informações das empresas de investimento</h1>
+<p>click no cartão para ver as informações</p>
+<p>Click em <b>mais...</b>para receber uma analise de mercado personalizada de acordo com a sua renda</p>
+</div>
+<div class="background">
     <div class="container mt-3 mb-3">
         <div class="row">
             {% for ticker, details in exchange.items() %}
             <div class="col-md-6">
-                <div class="card-flip flip">
-                    <p class="card-frente cinzel" data-ticker="{{ ticker }}" data-details="{{ details }}">
-                        {{ details['name'] }}
-                    </p>
-                    <div class="card-verso ">
-                        <div class="ticker-detail-item">
-                            <p>Preço Abertura:{{ details['open'] }}</p>
-                            <p>Preço Alta: {{ details['high'] }}</p>
-                            <p>Preço de Baixa: {{ details['low'] }}</p>
-                        </div>    
-                        <div class="ticker-detail-item">
-                            <p>Fechamento:{{ details['close'] }}</p>
-                            <p>Volume:{{ details['volume'] }}</p>
-                            <p>Preço Médio Por Vol:{{ details['vwap'] }}</p>
+                <div class="ajustcard">
+                    <div class="card-flip flip">
+                        <p class="card-frente cinzel" data-ticker="{{ ticker }}" data-details="{{ details }}">
+                            {{ details['name'] }}
+                        </p>
+                        <div class="card-verso ">
+                            <div class="ticker-detail-item">
+                                <p>Preço Abertura: {{ details['open']}}</p>
+                                <p>Preço Alta: {{ details['high']}}</p>
+                                <p>Preço de Baixa: {{ details['low']}}</p>
+                            </div>    
+                            <div class="ticker-detail-item">
+                                <p>Fechamento: {{ details['close']}}</p>
+                                <p>Volume: {{ details['volume']}}</p>
+                                <p>Preço Médio/Vol: {{ details['vwap']}}</p>
+                            </div>
+                            <div class="ticker-detail-item">
+                                <p>N°Transações: {{ details['transactions']}}</p>
+                                <p></p>
+                                <button class="btn btn-transparent btn-borderless chat-toggle-btn" data-ticker="{{ ticker }}" data-details="{{ details }}">
+                                    Mais...
+                                </button>
+                            </div>
+                            
                         </div>
-                        <div class="ticker-detail-item">
-                            <p>Quantidade Transações: {{ details['transactions'] }}</p>
-                            <p></p>
-                            <p><button class="btn btn-transparent btn-borderless chat-toggle-btn" data-ticker="{{ ticker }}" data-details="{{ details }}">
-                                Mais...
-                            </button>
-                            </p>
-                        </div>
-                        
                     </div>
                 </div>
             </div>
