@@ -19,3 +19,35 @@
 footer{
     background-color: gray;
 }
+.loading {
+    position: fixed;
+    display: none;
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.load {
+    width: 200px;
+    height: 200px;
+    border: 10px solid #16db65;
+    border-radius: 50%;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation: load 0.8s infinite;
+}
+
+@keyframes load {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading.active {
+    display: flex;
+}

@@ -11,72 +11,76 @@
 </head>
 
 {% block title %}Investimentos{% endblock %}
-
 {% block content %}
-<div class="text-trade">
-<h1>Veja as principais informações das empresas de investimento</h1>
-<p>click no cartão para ver as informações</p>
-<p>Click em <b>mais...</b>para receber uma analise de mercado personalizada de acordo com a sua renda</p>
+<div class="loading">
+    <div class="load"></div>
 </div>
-<div class="background">
-    <div class="container mt-3 mb-3">
-        <div class="row">
-            {% for ticker, details in exchange.items() %}
-            <div class="col-md-6">
-                <div class="ajustcard">
-                    <div class="card-flip flip">
-                        <p class="card-frente cinzel" data-ticker="{{ ticker }}" data-details="{{ details }}">
-                            {{ details['name'] }}
-                        </p>
-                        <div class="card-verso ">
-                            <div class="ticker-detail-item">
-                                <p>Preço Abertura: {{ details['open']}}</p>
-                                <p>Preço Alta: {{ details['high']}}</p>
-                                <p>Preço de Baixa: {{ details['low']}}</p>
-                            </div>    
-                            <div class="ticker-detail-item">
-                                <p>Fechamento: {{ details['close']}}</p>
-                                <p>Volume: {{ details['volume']}}</p>
-                                <p>Preço Médio/Vol: {{ details['vwap']}}</p>
+<div class="content">
+    <div class="text-trade">
+    <h1>Veja as principais informações das empresas de investimento</h1>
+    <p>click no cartão para ver as informações</p>
+    <p>Click em <b>mais...</b>para receber uma analise de mercado personalizada de acordo com a sua renda</p>
+    </div>
+    <div class="background">
+        <div class="container mt-3 mb-3">
+            <div class="row">
+                {% for ticker, details in exchange.items() %}
+                <div class="col-md-6">
+                    <div class="ajustcard">
+                        <div class="card-flip flip">
+                            <p class="card-frente cinzel" data-ticker="{{ ticker }}" data-details="{{ details }}">
+                                {{ details['name'] }}
+                            </p>
+                            <div class="card-verso ">
+                                <div class="ticker-detail-item">
+                                    <p>Preço Abertura: {{ details['open']}}</p>
+                                    <p>Preço Alta: {{ details['high']}}</p>
+                                    <p>Preço de Baixa: {{ details['low']}}</p>
+                                </div>    
+                                <div class="ticker-detail-item">
+                                    <p>Fechamento: {{ details['close']}}</p>
+                                    <p>Volume: {{ details['volume']}}</p>
+                                    <p>Preço Médio/Vol: {{ details['vwap']}}</p>
+                                </div>
+                                <div class="ticker-detail-item">
+                                    <p>N°Transações: {{ details['transactions']}}</p>
+                                    <p></p>
+                                    <button class="btn btn-transparent btn-borderless chat-toggle-btn" data-ticker="{{ ticker }}" data-details="{{ details }}">
+                                        Mais...
+                                    </button>
+                                </div>
+                                
                             </div>
-                            <div class="ticker-detail-item">
-                                <p>N°Transações: {{ details['transactions']}}</p>
-                                <p></p>
-                                <button class="btn btn-transparent btn-borderless chat-toggle-btn" data-ticker="{{ ticker }}" data-details="{{ details }}">
-                                    Mais...
-                                </button>
-                            </div>
-                            
                         </div>
                     </div>
                 </div>
+                {% if loop.index % 2 == 0 %}
+                </div><div class="row">
+                {% endif %}
+                {% endfor %}
             </div>
-            {% if loop.index % 2 == 0 %}
-            </div><div class="row">
-            {% endif %}
-            {% endfor %}
-        </div>
 
-        <div class="pagination">
-            {% if page > 1 %}
-                <a href="?page={{ page - 1 }}" class="btn btn-primary">Previous</a>
-            {% endif %}
-        
-            {% if page < total_pages %}
-                <a href="?page={{ page + 1 }}" class="btn btn-primary">Next</a>
-            {% endif %}
+            <div class="pagination">
+                {% if page > 1 %}
+                    <a href="?page={{ page - 1 }}" class="btn btn-primary">Previous</a>
+                {% endif %}
+            
+                {% if page < total_pages %}
+                    <a href="?page={{ page + 1 }}" class="btn btn-primary">Next</a>
+                {% endif %}
+            </div>
         </div>
-    </div>
-    </div>
-    <div class="modal fade" id="modal-chat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Assistente Financeiro</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body" id="chat-body">
-                    <!-- Aqui serão exibidas as respostas do assistente financeiro -->
+        </div>
+        <div class="modal fade" id="modal-chat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Assistente Financeiro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body" id="chat-body">
+                        <!-- Aqui serão exibidas as respostas do assistente financeiro -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,34 +90,39 @@
     <script>
         $(document).ready(function() {
             $('.chat-toggle-btn').click(function() {
-                const ticker = $(this).data('ticker');
-                let details = $(this).data('details');
-                const csrf_token = "{{ csrf_token() }}";
-                console.log(ticker);
-                if (typeof details === 'string') {
+            const ticker = $(this).data('ticker');
+            let details = $(this).data('details');
+            const csrf_token = "{{ csrf_token() }}";
+            
+            if (typeof details === 'string') {
                 details = details.replace(/'/g, '"');
+            }
+
+            $('.loading').addClass('active');
+
+            $.ajax({
+                type: 'POST',
+                url: '/trade/neural',
+                contentType: 'application/json',
+                headers: {
+                    'X-CSRFToken': csrf_token
+                },
+                data: JSON.stringify({ details: details }),
+                success: function(data) {
+                    $('#chat-body').html(`
+                        <p>${data.details}</p>
+                    `);
+                    $('#modal-chat').modal('show');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Houve um problema com a operação:', error);
+                },
+                complete: function() {
+                    $('.loading').removeClass('active');
                 }
-                console.log(details);
-                $.ajax({
-                    type: 'POST',
-                    url: '/trade/neural',
-                    contentType: 'application/json',
-                    headers:{
-                        'X-CSRFToken': csrf_token
-                    },
-                    data: JSON.stringify({details: details}),
-                    success: function(data) {
-                        $('#chat-body').html(`
-                            <p>${data.details}</p>
-                        `);
-                        $('#modal-chat').modal('show');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Houve um problema com a operação:', error);
-                    }
-                });
             });
         });
+    });
     </script>
     <script>
         document.querySelectorAll('.card-flip').forEach(card => {

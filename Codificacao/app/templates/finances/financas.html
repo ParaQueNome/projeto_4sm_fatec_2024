@@ -10,6 +10,9 @@
 </head>
 {% block title %}Cadastro{% endblock %}
 {% block content %}
+<div class="loading">
+    <div class="load"></div>
+</div>
 <div class="financas-geral">
     <div class="titulo">
         <h1>Bem vindo a sua DRE pessoal</h1>
@@ -113,6 +116,8 @@
     
     <script>
         document.getElementById('chat-toggle-btn').addEventListener('click', function() {
+            document.querySelector('.loading').classList.add('active');
+
             fetch('/finance/chat', {
                 method: 'GET',
             })
@@ -124,13 +129,16 @@
                 paragraphs.forEach(paragraph => {
                     formattedData += "<p>" + paragraph + "</p>";
                 });
-    
+
                 document.getElementById('chat-body').innerHTML = formattedData;
                 var modal = new bootstrap.Modal(document.getElementById('modal-chat'));
                 modal.show();
             })
             .catch((error) => {
                 console.error('Erro ao carregar as respostas do assistente financeiro:', error);
+            })
+            .finally(() => {
+                document.querySelector('.loading').classList.remove('active');
             });
         });
     </script>
