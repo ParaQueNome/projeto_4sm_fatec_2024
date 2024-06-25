@@ -3,8 +3,15 @@
     position: absolute; right: 40px;
     display: flex;
     flex-basis: auto;
+    
 }
-
+.nav-link{
+    font-size: 18px !important;
+    color: snow !important;
+}
+.nav-link:hover{
+    color: #38b083 !important;
+}
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 *{
     margin: 0;

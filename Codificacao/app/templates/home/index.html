@@ -5,6 +5,8 @@
             href="{{url_for('static', filename='css/base.css')}}">
             <link rel="stylesheet" type="text/css" 
             href="{{url_for('static', filename='css/index.css')}}">
+            <link rel="stylesheet" type="text/css" 
+            href="{{url_for('static', filename='css/tooplate-tween-agency.css')}}">
             {{ bootstrap.load_css() }}
     {% endblock %}
 </head>
@@ -12,311 +14,509 @@
 {% block title %}index{% endblock %}
 {% block content %}
 <body>
-            <div>
-              <div class="custom_menu-btn ">
-                <button>
-                  <span class=" s-1">
-  
-                  </span>
-                  <span class="s-2">
-  
-                  </span>
-                  <span class="s-3">
-  
-                  </span>
-                </button>
-              </div>
-            </div>
-  
-          </nav>
-        </div>
-      </header>
-      <!-- end header section -->
-      <!-- slider section -->
-      <section class="slider_section ">
-        <div class="carousel_btn-container">
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">01</li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1">02</li>
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-5 offset-md-1">
-                    <div class="detail-box">
-                      <h1>
-                        Plantae: <br>
-                        Biodiversidade Vegetal <br>
-                        para as Gerações Futuras
-                      </h1>
-                      <p>
-                       Clique no botão abaixo e saiba mais sobre o projeto.
-                      </p>
-                      <div class="btn-box">
-                        <a href="" class="btn-1">
-                          Sobre Nós
-                        </a>
+            <section class="hero d-flex justify-content-center align-items-center" id="section_1">
+              <div class="container">
+                  <div class="row">
+
+                      <div class="col-lg-8 col-12">
+                          <div class="heroText">
+                              <h1 class="text-white mb-lg-5 mb-4">We are ready to serve for your digital marketing</h1>
+
+                              <a href="https://www.youtube.com/watch?v=AYaHuZ4BB6Y" class="popup-youtube play-icon-wrap d-flex align-items-center">
+                                  <i class="bi-play play-icon"></i>
+
+                                  <small>1:49 Minutes</small>
+                              </a>
+                          </div>
                       </div>
-                    </div>
+
                   </div>
-                  <div class="offset-md-1 col-md-4 img-container">
-                    <div class="img-box">
-                      <img src="" alt="">
-                    </div>
-                  </div>
-                </div>
               </div>
-            </div>
-            <div class="carousel-item ">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-5 offset-md-1">
-                    <div class="detail-box">
-                      <h1>
-                        Consulte <br>
-                        na maior biblioteca <br>
-                        de plantas <br>
-                        do Brasil
-                      </h1>
-                      <p>
-                        Clique abaixo.
-                      </p>
-                      <div class="btn-box">
-                        <a href="" class="btn-1">
-                          Consultar
-                        </a>
+
+              <div class="overlay"></div>
+          </section>
+
+          <section class="about section-padding" id="section_2">
+              <div class="container">
+                  <div class="row">
+
+                      <div class="col-lg-6 col-12">
+                          <h2 class="mb-5">Digital Happiness</h2>
                       </div>
-                    </div>
+
+                      <div class="col-lg-4 col-12 ms-lg-auto mb-5 mb-lg-0">
+                          <nav>
+                              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                  <button class="nav-link active" id="nav-intro-tab" data-bs-toggle="tab" data-bs-target="#nav-intro" type="button" role="tab" aria-controls="nav-intro" aria-selected="true">Introduction</button>
+
+                                  <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+
+                                  <button class="nav-link" id="nav-faq-tab" data-bs-toggle="tab" data-bs-target="#nav-faq" type="button" role="tab" aria-controls="nav-faq" aria-selected="false">FAQs</button>
+                              </div>
+                          </nav>
+                      </div>
+
+                      <div class="col-12">
+                          <div class="tab-content" id="nav-tabContent">
+                              <div class="tab-pane fade show active" id="nav-intro" role="tabpanel" aria-labelledby="nav-intro-tab">
+                                  <div class="row">
+                                      <div class="col-lg-6 col-12 mb-lg-0 mb-4">
+                                          <img src="../static/imgs/webpage-browser-digital-icon-symbols-concept.jpg" class="img-fluid" alt="">
+                                      </div>
+
+                                      <div class="col-lg-5 col-12 m-auto">
+                                          <h3 class="mb-3">Brand Creation</h3>
+
+                                          <p>We want you to be happy with our Tween Agency services. Our digital agency is ready to serve you to grow your business in a healthy way.</p>
+
+                                          <p>This is Bootstrap 5 HTML template for your website provided by <a rel="nofollow" href="https://www.tooplate.com/" target="_blank">Tooplate</a>. You can download, edit and use this layout for your company website.</p>
+                                          
+                                          <p>Image credits go to <a rel="nofollow" href="https://freepik.com/" target="_blank">FreePik</a> and <a rel="nofollow" href="https://unsplash.com/" target="_blank">Unsplash</a> for images used in this template. We really appreciate these stock image websites for providing free photos to everyone.</p>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                  <div class="row">
+                                      <div class="col-lg-5 col-12 m-auto">
+                                          <h3 class="mb-3">Marie Smarty, CEO</h3>
+
+                                          <p>Our priority is your happiness working together with us. We guarantee you the best service quality from us. Feel free to talk to us via email, twitter, or linkedin.</p>
+
+                                          <ul class="social-icon mt-lg-5 mt-3">
+                                              <li class="me-3"><strong>Where to find?</strong></li>
+
+                                              <li><a href="https://twitter.com/search?q=tooplate" class="social-icon-link bi-twitter"></a></li>
+
+                                              <li><a href="#" class="social-icon-link bi-linkedin"></a></li>
+
+                                              <li><a href="#" class="social-icon-link bi-envelope"></a></li>
+                                          </ul>
+                                      </div>
+
+                                      <div class="col-lg-6 col-12 mt-lg-0 mt-4">
+                                          <img src="../static/imgs/dream-about-working-corporation-became-true.jpg" class="img-fluid" alt="">
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab">
+                                  <div class="row">
+                                      <div class="col-lg-6 col-12 mb-lg-0 mb-4">
+                                          <img src="../static/imgs/php-programming-html-coding-cyberspace-concept.jpg" class="img-fluid" alt="">
+                                      </div>
+
+                                      <div class="col-lg-5 col-12 m-auto">
+                                          <h3 class="mb-3">Frequenlty Asked Questions</h3>
+
+                                          <div class="accordion" id="accordionGeneral">
+                                              <div class="accordion-item">
+                                                  <h2 class="accordion-header" id="headingOne">
+                                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralOne" aria-expanded="true" aria-controls="accordionGeneralOne">
+                                                      What is Tween Agency?
+                                                      </button>
+                                                  </h2>
+
+                                                  <div id="accordionGeneralOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionGeneral">
+
+                                                      <div class="accordion-body">
+                                                          <p class="large-paragraph"><strong>Tween Agency</strong> is free HTML template powered by Bootstrap 5 CSS framework. This means you can use all standard CSS classes provided by Bootstrap version 5 to customize your CSS layout.</p>
+
+                                                          <p class="large-paragraph">You are allowed to use it for your clients. You are not allowed to redistribute this template ZIP file on any other template website. Please <a href="https://www.tooplate.com/contact" target="_blank"><strong>contact Tooplate</strong></a> for more info.</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+
+                                              <div class="accordion-item">
+                                                  <h2 class="accordion-header" id="headingTwo">
+                                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralTwo" aria-expanded="false" aria-controls="accordionGeneralTwo">
+                                                      What are available services?
+                                                      </button>
+                                                  </h2>
+
+                                                  <div id="accordionGeneralTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionGeneral">
+
+                                                      <div class="accordion-body">
+                                                          <p class="large-paragraph">We provide full digital marketing services for all various aspects of your company's web presence and social medias. You have 100% peace of mind for your company by working with us.</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+
+                                              <div class="accordion-item">
+                                                  <h2 class="accordion-header" id="headingThree">
+                                                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionGeneralThree" aria-expanded="false" aria-controls="accordionGeneralThree">
+                                                      How many successful projects?
+                                                      </button>
+                                                  </h2>
+
+                                                  <div id="accordionGeneralThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionGeneral">
+
+                                                      <div class="accordion-body">
+                                                          <p class="large-paragraph">We have over 280+ successful projects for different companies. There are great experiences of working together with different clients all over the world.</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
                   </div>
-                  <div class="offset-md-1 col-md-4 img-container">
-                    <div class="img-box">
-                      <img src="" alt="">
-                    </div>
-                  </div>
-                </div>
               </div>
-            </div>
+          </section>
+
+          <section class="services section-padding" id="section_3">
+              <div class="container">
+                  <div class="row">
+
+                      <h2 class="mb-5 text-center">Digital Services</h2>
+
+                          <div class="col-lg-4 col-12 d-flex bg-primary p-0">
+                              <img src="../static/imgs/services/undraw_Online_page_re_lhgx.svg" class="img-fluid services-image" alt="">
+                          </div>
+
+                          <div class="col-lg-4 col-12 p-0">
+                              <div class="services-info custom-icon-left paddingText">
+                              
+                                  <h4 class="">UI Design</h4>
+
+                                  <p class="mb-4">Lorem Ipsum is simply dummy text of the printing industry</p>
+
+                                  <a class="custom-btn custom-bg-dark btn" href="#">Learn More</a>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-4 col-12 d-flex bg-warning p-0">
+                              <img src="../static/imgs/services/undraw_online_transactions_02ka.svg" class="img-fluid services-image" alt="">
+                          </div>
+
+                          <div class="col-lg-4 col-12 p-0 order-lg-0 order-sm-5">
+                        
+                              <div class="services-info custom-icon-right paddingText order-lg-0 order-sm-2">
+                              
+                                  <h4 class="">Marketing</h4>
+
+                                  <p class="mb-4">Lorem Ipsum is simply dummy text of the printing industry</p>
+
+                                  <a class="custom-btn custom-bg-dark btn" href="#">Learn More</a>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-4 col-12 d-flex bg-success p-0 order-lg-0 order-sm-4">
+                              <img src="../static/imgs/services/undraw_content_team_3epn.svg" class="img-fluid services-image" alt="">
+                          </div>
+
+                          <div class="col-lg-4 col-12 p-0">
+
+                              <div class="services-info custom-icon-top paddingText">
+                          
+                                  <h4 class="">Ecommerce</h4>
+
+                                  <p class="mb-4">Lorem Ipsum is simply dummy text of the printing industry</p>
+
+                                  <a class="custom-btn custom-bg-dark btn" href="#">Learn More</a>
+                              </div>
+                          </div>
+
+                  </div>
+              </div>
+          </section>
+
+          <section class="work section-padding" id="section_4">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-12">
+                          <h2 class="mb-5 text-center">Selected Projects</h2>
+                      </div>
+
+                      <div class="col-lg-4 col-12">
+                          <div class="work-thumb mb-4">
+                              <div class="work-image-wrap">
+                                  <a href="../static/imgs/work/anthony-espinosa-pYQSM-p_0_c-unsplash.jpg" class="image-popup">
+                                      <img src="./static/imgs/work/anthony-espinosa-pYQSM-p_0_c-unsplash.jpg" class="img-fluid work-image" alt="">
+                                  </a>
+                              </div>
+                              
+                              <div class="work-text-info">
+                                  <small class="work-tag bg-white shadow-lg">Art Direction</small>
+
+                                  <h4 class="work-title">Simple Burger</h4>
+                              </div>
+                          </div> 
+
+                          <div class="work-thumb mb-4">
+                              <div class="work-image-wrap">
+                                  <a href="../static/imgs/work/samantha-gades-lf2pD--wIUA-unsplash.jpg" class="image-popup">
+                                      <img src="../static/imgs/work/samantha-gades-lf2pD--wIUA-unsplash.jpg" class="img-fluid work-image" alt="">
+                                  </a>
+                              </div>
+                              
+                              <div class="work-text-info">
+                                  <small class="work-tag bg-white shadow-lg">Design</small>
+
+                                  <h4 class="work-title">Fitness</h4>
+                              </div>
+                          </div> 
+                      </div>
+
+                      <div class="col-lg-4 col-12">
+                          <div class="work-thumb mb-4">
+                              <div class="work-image-wrap">
+                                  <a href="../static/imgs/work/business-chart-visual-graphics-report-concept.jpg" class="image-popup">
+                                      <img src="../static/imgs/work/business-chart-visual-graphics-report-concept.jpg" class="img-fluid work-image" alt="">
+                                  </a>
+                              </div>
+                              
+                              <div class="work-text-info">
+                                  <small class="work-tag bg-white shadow-lg">Web Development</small>
+
+                                  <h4 class="work-title">Data Science</h4>
+                              </div>
+                          </div> 
+
+                          <div class="work-thumb mb-4">
+                              <div class="work-image-wrap">
+                                  <a href="../static/imgs/work/tyler-nix-HmVQh_EQJhY-unsplash.jpg" class="image-popup">
+                                      <img src="../static/imgs/work/tyler-nix-HmVQh_EQJhY-unsplash.jpg" class="img-fluid work-image" alt="">
+                                  </a>
+                              </div>
+                              
+                              <div class="work-text-info">
+                                  <small class="work-tag bg-white shadow-lg">Branding</small>
+
+                                  <small class="work-tag bg-white shadow-lg">Graphic Design</small>
+
+                                  <h4 class="work-title">Health</h4>
+                              </div>
+                          </div> 
+                      </div>
+
+                      <div class="col-lg-4 col-12">
+                          <div class="work-thumb mb-4">
+                              <div class="work-image-wrap">
+                                  <a href="../static/imgs/work/mos-sukjaroenkraisri-jz8AmJDyhig-unsplash.jpg" class="image-popup">
+                                      <img src="../static/imgs/work/mos-sukjaroenkraisri-jz8AmJDyhig-unsplash.jpg" class="img-fluid work-image" alt="">
+                                  </a>
+                              </div>
+                              
+                              <div class="work-text-info">
+                                  <small class="work-tag bg-white shadow-lg">Photography</small>
+
+                                  <h4 class="work-title">Portraits</h4>
+                              </div>
+                          </div> 
+
+                          <div class="work-thumb work-thumb-text">
+                              <div class="">
+                                  <p class="work-title">If you are interested in working together, Say Hi at <strong><a href="#">hi@company.com</a></strong></p>
+                              </div>
+                          </div> 
+                      </div>
+
+                  </div>
+              </div>
+          </section>
+
+          <section class="pricing section-padding" id="section_5">
+              <div class="container">
+                  <div class="row">
+
+                      <div class="col-12">
+                          <h2 class="text-white mb-5 text-center">Tween Marketing Plans</h2>
+                      </div>
+
+                      <div class="col-lg-6 col-12">
+                          <div class="pricing-plan bg-white">
+                              <div class="d-flex flex-wrap align-items-center pricing-header">
+                                  <i class="pricing-icon bi-person"></i>
+
+                                  <div class="pricing-name">
+                                      <h4>Sufficient</h4>
+                                  </div>
+
+                                  <div class="pricing-price">
+                                      <h4>$4,600</h4>
+                                  </div>
+
+                                  <small class="pricing-recommend">Recommended Plan</small>
+                              </div>
+
+                              <div class="pricing-body">
+                                  <h5 class="mb-3">Managed Features</h5>
+
+                                  <ul class="pricing-list">
+                                      <li class="pricing-list-item">Fully Digital</li>
+                                      <li class="pricing-list-item">Social Media Managements</li>
+                                      <li class="pricing-list-item">Website Optimizations</li>
+                                      <li class="pricing-list-item">24/7 Phone Calls and Emails</li>
+                                  </ul>
+
+                                  <h5 class="mt-lg-5 mt-4 mb-3">Small to Mid-size Businesses</h5>
+
+                                  <p>Everything you need for your digital marketing stuffs</p>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-lg-6 col-12 mt-lg-0 mt-5">
+                          <div class="pricing-plan border-0 bg-white shadow-lg">
+                              <div class="d-flex flex-wrap align-items-center pricing-header">
+                                  <i class="pricing-icon bi-briefcase"></i>
+
+                                  <div class="pricing-name">
+                                      <h4>Complete</h4>
+                                  </div>
+
+                                  <div class="pricing-price">
+                                      <h4>$8,200</h4>
+                                  </div>
+                                  
+                                  <small class="pricing-recommend">Ecommerce Plan</small>
+                              </div>
+
+                              <div class="pricing-body">
+                                  <h5 class="mb-3">Fully Featured Work</h5>
+
+                                  <ul class="pricing-list">
+                                      <li class="pricing-list-item">Completely Digital</li>
+                                      <li class="pricing-list-item">Everything managed online</li>
+                                      <li class="pricing-list-item">Full Ecommerce Features</li>
+                                      <li class="pricing-list-item">24/7 Instant Video Chats</li>
+                                  </ul>
+
+                                  <h5 class="mt-lg-5 mt-4 mb-3">High-end Ecommerce Websites</h5>
+
+                                  <p>Fit for your company and ecommerce related stuffs</p>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="overlay dark-overlay"></div>
+          </section>
+
+          <section class="section-padding" id="section_6">
+              <div class="container">
+                  <div class="row">
+
+                      <div class="col-lg-8 col-md-10 col-12 mx-auto">
+                          <h2 class="mb-4 text-center">Let's chat</h2>
+
+                          <form class="custom-form" role="form" action="" method="post">
+                              <div class="row">
+                                  <div class="col-lg-4 col-md-6 col-12 my-2">
+                                      <label class="mb-2" for="name">Full Name</label>
+
+                                      <input type="text" name="name" id="name" class="form-control" required="">
+                                  </div>
+
+                                  <div class="col-lg-4 col-md-6 col-12 my-2">
+                                      <label class="mb-2" for="email">Email Address</label>
+                                      
+                                      <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" required="">
+                                  </div>
+
+                                  <div class="col-lg-4 col-md-6 col-12 my-2">
+                                      <label class="mb-2" for="subject">How did you know about us?</label>
+
+                                      <select class="form-select form-control" name="subject" id="subject">
+                                          <option selected="">Choose a subject</option>
+                                          <option value="web+search">Website Searches</option>
+                                          <option value="social+media">Social Media</option>
+                                          <option value="others">Others</option>
+                                      </select>
+                                  </div>
+
+                                  <div class="col-12 my-2">
+                                      <label class="mb-2" for="message">Tell us about the project</label>
+
+                                      <textarea class="form-control" rows="5" id="message" name="message"></textarea>
+                                  
+                                      <button type="submit" class="form-control mt-4" id="submit">Submit</button>
+                                  </div>
+
+                              </div>
+                          </form>
+                      </div>
+
+                  </div>
+              </div>
+          </section>
+
+      </main>
+
+      <footer class="site-footer">
+          <div class="container">
+              <div class="row">
+
+                  <div class="col-lg-5 col-12 me-auto mb-4">
+                      <h5 class="text-white mb-3">Newsletter</h5>
+
+                      <form class="custom-form subscribe-form mt-4" role="form">
+                          <div class="row">
+                              <div class="col-lg-8 col-md-8 col-7">                                    
+                                  <input type="email" name="subscribe-email" id="subscribe-email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Your email address" required="">
+                              </div>
+
+                              <div class="col-lg-4 col-md-4 col-5">                                  
+                                  <button type="submit" class="form-control" id="subscribe">Subscribe</button>
+                              </div>
+
+                          </div>
+                      </form>
+                  </div>
+
+                  <div class="col-lg-2 col-12 mx-auto my-lg-0 my-4">
+                      <h5 class="text-white mb-3">Services</h5>
+
+                      <ul class="footer-menu">
+                          <li class="footer-menu-item"><a href="#" class="footer-menu-link">Digital Marketing</a></li>
+
+                          <li class="footer-menu-item"><a href="#" class="footer-menu-link">Creative Ideas</a></li>
+
+                          <li class="footer-menu-item"><a href="#" class="footer-menu-link">Branding</a></li>
+
+                          <li class="footer-menu-item"><a href="#" class="footer-menu-link">Video Contents</a></li>
+                      </ul>
+                  </div>
+
+                  <div class="col-lg-2 col-12">
+                      <h5 class="text-white mb-3">Say Hi</h5>
+
+                      <p class="text-white mb-1">Sunderland SR6 0JL, United Kingdom</p>
+
+                      <p><a href="mailto:email@company.com" class="footer-link">email@company.com</a><p>
+                  </div>
+
+                  <div class="site-footer-bottom mt-5">
+                      <div class="row pt-4">
+                          <div class="col-lg-6 col-12">
+                              <p class="copyright-text tooplate-link">Copyright © 2022 Tween Agency Co., Ltd.
+                              <br>Design: <a rel="nofollow" href="https://www.tooplate.com/" target="_blank">Tooplate</a></p>
+                          </div>
+
+                          <div class="col-lg-3 col-12 ms-auto">
+                              <ul class="social-icon">
+                                  <li><a href="#" class="social-icon-link bi-facebook"></a></li>
+
+                                  <li><a href="https://twitter.com/search?q=tooplate" class="social-icon-link bi-twitter"></a></li>
+
+                                  <li><a href="#" class="social-icon-link bi-instagram"></a></li>
+
+                                  <li><a href="#" class="social-icon-link bi-linkedin"></a></li>
+
+                                  <li><a href="#" class="social-icon-link bi-youtube"></a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
           </div>
-  
-        </div>
-  
-      </section>
-      <!-- end slider section -->
-    </div>
-  
-    <!-- freelance section -->
-  
-    <section class="freelance_section ">
-      <div id="accordion">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-5 offset-md-1">
-              <div class="detail-box">
-                <div class="heading_container">
-                  <h2>
-                    MAS, POR QUE UTILIZAR O PLANTAE?
-                  </h2>
-                </div>
-                <div class="tab_container">
-                  <div class="t-link-box" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <div class="img-box">
-                      <img src="" alt="">
-                    </div>
-                    <div class="detail-box">
-                      <h5>
-                        Totalmente Gratuito
-                      </h5>
-                      <h3>
-                        Utilizamos APIs livres  
-                      </h3>
-                    </div>
-                  </div>
-                  <div class="t-link-box collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <div class="img-box">
-                      <img src="" alt="">
-                    </div>
-                    <div class="detail-box">
-                      <h5>
-                        Melhor aproveitamento
-                      </h5>
-                      <h3>
-                        Sua plantação pode crescer de forma <br>exponencial com conhecimento
-                      </h3>
-                    </div>
-                  </div>
-                  <div class="t-link-box collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    <div class="img-box">
-                      <img src="" alt="">
-                    </div>
-                    <div class="detail-box">
-                      <h5>
-                        98%
-                      </h5>
-                      <h3>
-                        Aprovado pelos maiores produtores <br>rurais do Brasil
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="img-box">
-                  <img src="" alt="">
-                </div>
-              </div>
-              <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="img-box">
-                  <img src="" alt="">
-                </div>
-              </div>
-              <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="img-box">
-                  <img src="" alt="">
-                </div>
-              </div>
-              <div class="collapse" id="collapseFour" aria-labelledby="headingfour" data-parent="#accordion">
-                <div class="img-box">
-                  <img src="" alt="">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  
-    <!-- end freelance section -->
-  
-    <!-- client section -->
-  
-    <section class="client_section layout_padding">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-9 col-md-10 mx-auto">
-            <div class="heading_container">
-              <h2>
-                Depoimentos
-              </h2>
-            </div>
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="detail-box">
-                    <h4>
-                      João Cleber
-                    </h4>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sem orci, ullamcorper eget placerat elementum, facilisis aliquam orci. Mauris ullamcorper non nisl at imperdiet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sem orci, ullamcorper eget placerat elementum, facilisis aliquam orci. Mauris ullamcorper non nisl at imperdiet.
-                    </p>
-                    <img src="" alt="">
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="detail-box">
-                    <h4>
-                      Hebe Camargo
-                    </h4>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sem orci, ullamcorper eget placerat elementum, facilisis aliquam orci. Mauris ullamcorper non nisl at imperdiet.
-                    </p>
-                    <img src="" alt="">
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="detail-box">
-                    <h4>
-                      Jô Soares
-                    </h4>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sem orci, ullamcorper eget placerat elementum, facilisis aliquam orci. Mauris ullamcorper non nisl at imperdiet.
-                    </p>
-                    <img src="" alt="">
-                  </div>
-                </div>
-              </div>
-              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="sr-only">Voltar</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="sr-only">Próximo</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  
-    <!-- end client section -->
-  
-  
-  
-    <!-- info section -->
-  
-    <section class="info_section ">
-      <div class="info_container layout_padding-top">
-        <div class="container">
-          <div class="info_top">
-            <div class="info_logo">
-              <img src="" alt="" />
-              <span>
-                PLANTAE
-              </span>
-            </div>
-          </div>
-  
-          <div class="info_main">
-            <div class="row">
-              <div class="col-md-3 col-lg-4">
-                <div class="info_link-box">
-                  <h5>
-                    Links Úteis
-                  </h5>
-                  <ul>
-                    <li class=" active">
-                      <a class="" href="">Página Inicial<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="">
-                      <a class="" href="">Sobre Nós </a>
-                    </li>
-                    <li class="">
-                      <a class="" href="">Consultar </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-3 ">
-                <h5>
-                  APIs Utilizadas
-                </h5>
-                <p>
-                  Estamos utilizando API's disponibilizadas pela <a href="https://www.agroapi.cnptia.embrapa.br/portal/">Embrapa</a> de forma aberta e freemium.
-                </p>
-              </div>
-  
-              <div class="col-md-9 col-lg-4 offset-lg-1">
-                <h5>
-                  Base
-                </h5>
-                <p>
-                  O projeto consiste em uma plataforma web onde o produtor agrícola consegue consultar quais as melhores plantas a serem cultivadas em determinada região baseada em clima, solo, e condições adversas. Para isso iremos utilizar API's disponibilizadas pela Embrapa de forma aberta e freemium onde as consultas realizadas serão retornadas em forma de tabelas e descrição, a fim de colaborar com a disseminação de informações sobre a diversidade de plantas.              </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  
-    <!-- end info section -->
-    </body>
+      </footer>
+  </body>
 {% endblock %}

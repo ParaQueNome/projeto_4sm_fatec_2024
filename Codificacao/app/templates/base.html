@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finanças</title>
     {% block styles %}
-        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/base.css')}}">
+        <link rel="stylesheet" type="text/css" 
+        href="{{url_for('static', filename='css/base.css')}}">
+        <link rel="stylesheet" type="text/css" 
+        href="{{url_for('static', filename='css/bootstrap-icons.css')}}">
+        <link rel="stylesheet" type="text/css" 
+        href="{{url_for('static', filename='css/magnific-popup.css')}}">
+        <link rel="stylesheet" type="text/css" 
+        href="{{url_for('static', filename='css/tooplate-tween-agency.css')}}">
         {{ bootstrap.load_css() }}
     {% endblock %}
 </head>
@@ -34,7 +41,7 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/Noticias">Sobre</a>
+                            <a class="nav-link" href="/Noticias">Noticias</a>
                         </li>
                         <div id="nbarmax" class="user_Sair">
                             {% if 'usuario' in session and session['usuario'] != "" %}
@@ -89,7 +96,6 @@
 </footer>
 
 {{ bootstrap.load_js() }}
-<!-- Inclua os scripts JavaScript do Bootstrap no final do corpo do documento -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -111,6 +117,14 @@
     window.onload = verificarTamanhoTela;
     window.onresize = verificarTamanhoTela;
 </script>
-
+<!-- JAVASCRIPT FILES -->
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/popper.js"></script>
+<script src="../static/bootstrap.min.js"></script>
+<script src="../static/jquery.backstretch.min.js"></script>
+<script src="../static/jquery.magnific-popup.min.js"></script>
+<script src="../static/magnific-popup-options.js"></script>
+<script src="../static/click-scroll.js"></script>
+<script src="../statics/custom.js"></script>
 </body>
 </html>
