@@ -198,28 +198,30 @@
         });
     </script>
         <!-- Modal de Chat -->
-    <div class="modal fade" id="modal-chat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Assistente Financeiro</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body" id="chat-body">
-                    <!-- Aqui serão exibidas as respostas do assistente financeiro -->
+        <div class="modal fade" id="modal-chat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Assistente Financeiro</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+                    <div class="modal-body" id="chat-body">
+                        <!-- Aqui serão exibidas as respostas do assistente financeiro -->
+                    </div>
+                    <div class="modal-footer">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     
     <!-- Modal -->
     <div class="modal fade" id="modalDespesas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content bg-dark text-light">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Despesas</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body" action="finance.finance">
                     <form method="POST" action="{{ url_for('finance.despesas') }}">
@@ -252,7 +254,7 @@
                         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="submit" class="btn btn-primary">Adicionar despesa</button>
+                            <button type="submit" class="btn btn-success">Adicionar despesa</button>
                         </div>
                     </form>
                 </div>
@@ -263,10 +265,10 @@
     <!-- Modal -->
     <div class="modal fade" id="modalGeral" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content bg-dark text-light">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Despesas</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    <h5 class="modal-title" id="exampleModalLabel">DRE(Demonstração do Resultado do Exercício)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body" action="finance.finance">
                     <form method="POST" action="{{ url_for('finance.finance') }}">
@@ -319,8 +321,7 @@
                         </div>
                         
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="submit" class="btn btn-primary">Adicionar despesa</button>
+                            <button type="submit" class="btn btn-success">Adicionar Dados</button>
                         </div>
                     </form>
                 </div>
@@ -332,10 +333,10 @@
     <!-- Modal -->
     <div class="modal fade" id="modalReceitas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content bg-dark text-light">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Receitas</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body" action="finance.finance">
                     <form method="POST" action="{{ url_for('finance.receitas') }}">
@@ -365,7 +366,7 @@
                         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="submit" class="btn btn-primary">Adicionar despesa</button>
+                            <button type="submit" class="btn btn-success">Adicionar despesa</button>
                         </div>
                     </form>
                 </div>
@@ -374,4 +375,6 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 {% endblock %}
