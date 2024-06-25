@@ -1,24 +1,4 @@
-.financas-geral{
-    background-color: gray;
-    height: 100vh;
-    width: 100vw;
-}
-.titulo{
-    background-color: black;
-    text-align: center;
-    padding-top: 30px;
-}
-.titulo h1{
-    color:blueviolet;
-    font-weight: bold;
 
-}
-.titulo p{
-    color:white;
-}
-footer{
-    background-color: gray;
-}
 .loading {
     position: fixed;
     display: none;
@@ -33,13 +13,13 @@ footer{
 }
 
 .load {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border: 10px solid #16db65;
     border-radius: 50%;
     border-top-color: transparent;
     border-bottom-color: transparent;
-    animation: load 0.8s infinite;
+    animation: load 0.8s infinite ;
 }
 
 @keyframes load {
@@ -51,3 +31,173 @@ footer{
 .loading.active {
     display: flex;
 }
+
+
+h1{
+    font-size: 30px;
+    color: snow !important;
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  table{
+    width:100%;
+    table-layout: fixed;
+  }
+  .tbl-header{
+    background-color: #16db65be;
+    border-top-left-radius:10px ;
+    border-top-right-radius:10px ;
+   }
+  .tbl-content{
+    height:300px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 1px solid #16db65be;
+    border-bottom-left-radius:10px ;
+    border-bottom-right-radius:10px ;
+    background-color: #86868610;
+ 
+  }
+  .tbl-header2{
+    background-color: #16db65be;
+    border-top-left-radius:10px ;
+    border-top-right-radius:10px ;
+   }
+  .tbl-content2{
+    height:60px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 1px solid #16db65be;
+    border-bottom-left-radius:10px ;
+    border-bottom-right-radius:10px ;
+    background-color: #86868610;
+ 
+  }
+
+  .tbl-content td{
+    border-bottom: 0.5px solid rgba(169, 169, 169, 0.199);
+  }
+  .tbl-content button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.tbl-content button:focus {
+    outline: none;
+}
+
+.tbl-content ion-icon {
+    font-size: 20px;
+    color: #fff;
+}
+th{
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+td{
+    padding: 15px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 300;
+    font-size: 12px;
+    color: #fff;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+  }
+  
+  
+  /* demo styles */
+  
+  @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+  body{
+    background: -webkit-linear-gradient(left, #0e0f11, #24272c);
+    background: linear-gradient(to right, #0e0f11, #24272c);
+    font-family: 'Roboto', sans-serif;
+  }
+  section{
+    margin: 50px;
+  }
+
+  
+  /* for custom scrollbar for webkit browser*/
+  
+  ::-webkit-scrollbar {
+      width: 6px;
+  } 
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  } 
+  ::-webkit-scrollbar-thumb {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  }
+  .nada-cadastrado{
+    width: 100%;
+    height: 870px;
+    background-color: #24272c;
+  }
+  .button-adic{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 3em;
+  }
+  .blockcontent{
+    display: flex;
+    width: 100%;
+    height: 893px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #24272C;
+  }
+  .blockleft{
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: flex-start;
+    width: 40%;
+    height: 740px;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10em;
+
+  }
+  .blockleft p{
+    color: snow;
+    line-height: 2.5;
+  }
+  .blockright{
+    display: flex;
+    justify-content: flex-end;
+    width: 40%;
+    height: 870px;
+  }
+  .blockright img{
+    height: 850px;
+  }
+  .botaochat{
+    display: flex;
+    background-color: #24272C;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .botaochat button{
+    position: fixed;
+    margin-bottom: 6em;
+  }
+  .chat-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2em;
+  }
+  .chat-btn button{
+    width: 100px;
+  }

@@ -13,106 +13,161 @@
 <div class="loading">
     <div class="load"></div>
 </div>
-<div class="financas-geral">
-    <div class="titulo">
-        <h1>Bem vindo a sua DRE pessoal</h1>
-        <p>A Demonstração do Resultado do Exercício (DRE) pessoal é um relatório financeiro que resume as receitas, 
-            despesas e o resultado líquido (lucro ou prejuízo) de uma pessoa física em um determinado período. 
-            Ela é usada para avaliar a saúde financeira pessoal, ajudando a entender quanto se ganha, quanto se gasta e se sobra algum dinheiro (ou se há déficit) no final do período analisado. 
-            É similar à DRE de uma empresa, mas aplicada às finanças individuais.
-        </p>
-    </div>
+
     {% if finanService %}
-    <div class="container mt-4">
-        <h1 class="text-center">Demonstração de Resultado do Exercício Pessoal</h1>
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Receitas</th>
-                    <th scope="col">Valor (R$)</th>
-                    <th></th>
-                    <th></th>
-                </tr>
+    <section>
+        <h1>Receitas</h1>
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th scope="col">Receitas</th>
+                <th scope="col">Valor (R$)</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
             </thead>
+          </table>
+        </div>
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0" border="0">
             <tbody>
-                <!-- Iterar sobre as receitas -->
-                {% for receita in finanService.receitas %}
-                    
-                    <tr>
-                        <td>{{receita.nome_receita}}</td>
-                        <td>{{ receita.renda }}</td>
-                        <td></td>
-                        <td>
+            {% for receita in finanService.receitas %}
+                <tr>
+                    <td>{{receita.nome_receita}}</td>
+                    <td>{{ receita.renda }}</td>
+                    <td></td>
+                    <td>
                         <form method="post" action="{{ url_for('finance.deleteReceita') }}">
                             {{ form.csrf_token }}
                             <input type="hidden" name="receita_id" value="{{ receita['_id'] }}">
-                            <button type="submit">Remover</button>
+                            <button><ion-icon name="trash-outline"></ion-icon></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            <!-- Calcular total de receitas -->
+            <tr class="font-weight-bold">
+                <td>Total de Receitas</td>
+                <td>{{ totalReceitas }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+    </section>
+    <div class="button-adic">
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalReceitas">
+            Adicionar Receita(Ganhos)
+        </button>
+    </div>
+    <section>
+        <h1>Despesas</h1>
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th scope="col">Despesas</th>
+                <th scope="col">Valor (R$)</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                {% for gasto in finanService.gastos %}
+                    <tr>
+                        <td>{{ gasto.nome_gasto }}</td>
+                        <td>{{ gasto.valor }}</td>
+                        <td>
+                        <form method="post" action="{{ url_for('finance.deleteDespesa') }}">
+                            {{ form.csrf_token }}
+                            <input type="hidden" name="gasto_id" value="{{ gasto['_id'] }}">
+                            <button><ion-icon name="trash-outline"></ion-icon></button>
                         </form>
                         </td>
                     </tr>
                 {% endfor %}
-                <!-- Calcular total de receitas -->
-                <tr class="font-weight-bold">
-                    <td>Total de Receitas</td>
-                    <td>{{ totalReceitas }}</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalReceitas">
-            +
-        </button>
-        
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Despesas</th>
-                    <th scope="col">Valor (R$)</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Iterar sobre as despesas -->
-                {% for gasto in finanService.gastos %}
-                        <tr>
-                            <td>{{ gasto.nome_gasto }}</td>
-                            <td>{{ gasto.valor }}</td>
-                            
-                            <td>
-                                <form method="post" action="{{ url_for('finance.deleteDespesa') }}">
-                                    {{ form.csrf_token }}
-                                    <input type="hidden" name="gasto_id" value="{{ gasto['_id'] }}">
-                                    <button type="submit">Remover</button>
-                                </form>
-                            </td>
-                        </tr>
-                {% endfor %}
-                <!-- Calcular total de despesas -->
                 <tr class="font-weight-bold">
                     <td>Total de Despesas</td>
                     <td>{{ totalGastos }}</td>
                 </tr>
             </tbody>
-        </table>
-        
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDespesas">
-            +
+          </table>
+        </div>
+    </section>
+    <div class="button-adic">
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalDespesas">
+            Adicionar Despesas(Gastos)
         </button>
-        
-        <!-- Cálculo do Lucro/Prejuízo -->
-        <h2 class="mt-4">Resultado</h2>
-        <p>Lucro/Prejuízo: <span class="font-weight-bold text-primary">R${{ totalReceitas - totalGastos}}</span></p>
     </div>
-        {% else %}
-        <p>Nada Cadastrado no momento</p>
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalGeral">
-            Adicionar Nova Despesa
-        </button>
-    {% endif %}
-    <div id="chat-btn">
+    <section>
+        <h1>Resultado</h1>
+        <div class="tbl-header2">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th scope="col">Ganhos</th>
+                <th scope="col">Gastos</th>
+                <th scope="col">Final</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="tbl-content2">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                    <td>{{totalReceitas}}</td>
+                    <td>{{totalGastos}}</td>
+                    <td>R${{ totalReceitas - totalGastos}}</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+    </section>
+    <script>
+        $(window).on("load resize ", function() {
+        var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+        $('.tbl-header').css({'padding-right':scrollWidth});
+        }).resize();
+    </script>
+    <div class="chat-btn" id="chat-btn">
         <button class="btn btn-primary" id="chat-toggle-btn">Chat</button>
     </div>
+        {% else %}
+                <div class="nada-cadastrado">
+                    <div class="blockcontent">
+                        <div class="blockleft">
+                            <h1>O que é a DRE?</h1>
+                            <p>A DRE pessoal é uma Demonstração do Resultado do Exercício adaptada para finanças pessoais. Ela
+                                mostra receitas, despesas e o saldo de uma pessoa em um período, ajudando a entender e controlar
+                                melhor a saúde financeira individual.</p>
+                            <br>
+                            <br>
+                            <br>
+                            <h1>Como começar?</h1>
+                            <p>Para começar, use o botão abaixo. Adicione seus gastos e sua renda mensal. 
+                                Depois, você pode adicionar novos campos em ambos os seguimentos. 
+                                Caso queira receber uma análise baseada nos seus dados, use o botão Chat. <b>Chat</b></p>
+                        </div>
+                        <div class="blockright">
+                            <a href="https://storyset.com/business"></a>
+                                <img src="/static/imgs/Business Plan (3).gif" alt="gif">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="botaochat">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalGeral">
+                            Começar o uso da DRE
+                        </button>
+                    </div>
+                </div>
+    {% endif %}
     
     <script>
         document.getElementById('chat-toggle-btn').addEventListener('click', function() {

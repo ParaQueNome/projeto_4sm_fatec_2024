@@ -1,6 +1,6 @@
 .user_Sair{
     position: relative;
-    position: absolute; right: 30px;
+    position: absolute; right: 40px;
     display: flex;
     flex-basis: auto;
 }
@@ -35,5 +35,5 @@ footer p {
 }
 .bg-darkgray{
     background-color: #0e0f11;
-    border-bottom: 3px solid #363a42;
+    border-bottom: 3px;
 }
