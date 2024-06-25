@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import render_template, redirect
+from flask import render_template, redirect, flash
 from config import Config
 from app.forms.authForm import AuthenticationForm
 from app.forms.loginForm import LoginForm
@@ -26,7 +26,8 @@ def cadastro():
         crypto = CryptographyService(Cryptography())
         signup = SignUp(conexaoRepository, crypto)
         if(signup.signup(data)):
-            return 'cadastrado com sucesso'
+            flash('Cadastro realizado com sucesso!','sucess')
+            return redirect(url_for('auth.cadastro'))
     return render_template('auth/cadastro.html', form=form)
 
 @auth_bp.route('/login', methods=['GET', 'POST'])

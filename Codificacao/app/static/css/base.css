@@ -44,3 +44,9 @@ footer p {
     background-color: #0e0f11;
     border-bottom: 3px;
 }
+.nav-link.active {
+    background-color: #28a745; /* Verde */
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+}

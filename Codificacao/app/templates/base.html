@@ -30,18 +30,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('index.index') }}">Página Inicial</a>
+                            <a class="nav-link {% if request.endpoint == 'index.index' %}active{% endif %}" href="{{ url_for('index.index') }}">Página Inicial</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('finance.finance') }}">Controle Financeiro</a>
+                            <a class="nav-link {% if request.endpoint == 'finance.finance' %}active{% endif %}" href="{{ url_for('finance.finance') }}">Controle Financeiro</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('trade.investment') }}">Investimentos</a>
+                            <a class="nav-link {% if request.endpoint == 'trade.investment' %}active{% endif %}" href="{{ url_for('trade.investment') }}">Investimentos</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/Noticias">Noticias</a>
+                            <a class="nav-link {% if request.endpoint == 'news.index' %}active{% endif %}" href="/Noticias">Noticias</a>
                         </li>
                         <div id="nbarmax" class="user_Sair">
                             {% if 'usuario' in session and session['usuario'] != "" %}
