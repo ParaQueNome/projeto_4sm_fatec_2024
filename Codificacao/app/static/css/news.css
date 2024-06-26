@@ -17,3 +17,6 @@
 p{
     color: white;
   }
+  .card-body small{
+    color: white !important;
+  }
