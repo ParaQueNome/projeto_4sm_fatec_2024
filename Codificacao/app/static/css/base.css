@@ -5,7 +5,11 @@
     flex-basis: auto;
     
 }
-.nav-link{
+.logo{
+    width: 80px;
+    height: 80px;
+}
+.nav-item .nav-link{
     font-size: 18px !important;
     color: snow !important;
 }
@@ -45,8 +49,7 @@ footer p {
     border-bottom: 3px;
 }
 .nav-link.active {
-    background-color: #28a745; /* Verde */
-    color: white;
-    border-radius: 20px;
-    padding: 10px 20px;
+    color: #38b083;
+    border: 1px solid #38b083;
+    border-radius: 10px;
 }
