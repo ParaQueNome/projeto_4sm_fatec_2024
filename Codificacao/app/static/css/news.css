@@ -1,0 +1,19 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+  body{
+    background: -webkit-linear-gradient(left, #0e0f11, #24272c);
+    background: linear-gradient(to right, #0e0f11, #24272c);
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .bg-ticker-grey{
+    background: linear-gradient(to right, #32363f, #525c6c);
+    
+  }
+
+ h5{
+    color: white !important;
+ }
+
+p{
+    color: white;
+  }

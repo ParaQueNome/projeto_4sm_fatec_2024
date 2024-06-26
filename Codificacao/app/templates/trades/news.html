@@ -2,11 +2,9 @@
 
 <head>
     {% block styles %}
-            <link rel="stylesheet" type="text/css" 
-            href="{{url_for('static', filename='css/trade.css')}}">
-            <link rel="stylesheet" type="text/css" 
-            href="{{url_for('static', filename='css/base.css')}}">
-            {{ bootstrap.load_css() }}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/news.css') }}">
+        {{ bootstrap.load_css() }}
     {% endblock %}
 </head>
 
@@ -15,128 +13,68 @@
 {% block content %}
 <div class="animacao">
     <div class="container mt-3 mb-3">
-        <div class="row" >
+        <div class="row">
             {% for ticker, details in news.items() %}
-            <div class="col-md-6">
-                
+            <div class="col-md-12 mb-4">
                 <div class="ticker-card">
-                    
-                    <button class="btn btn-primary w-100 chat-toggle-btn" data-ticker="{{ ticker }}" data-details="{{ details }}">
-                        {{ details['title'] }}
-                    </button>
-                    <div class="ticker-details">
-                        <!-- Detalhes da ação -->
-                        <div class="ticker-detail-item">Preço Abertura: </div>
-                        <div class="ticker-detail-item">Preço Alta: </div>
-                        <div class="ticker-detail-item">Preço de Baixa: </div>
-                        <div class="ticker-detail-item">Fechamento: </div>
-                        <div class="ticker-detail-item">Volume: </div>
-                        <div class="ticker-detail-item">Preço Médio Por Vol: </div>
-                        <div class="ticker-detail-item">Quantidade Transações: </div>
+                    <div class="card bg-ticker-grey">
+                        <img src="{{ details['image_url'] }}" class="card-img-top img-fluid" alt="Imagem da notícia" style="max-height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5>{{ details['title'] }}</h5>
+                            <p class="card-text">{{ details['description'] }}</p>
+                            <a href="{{ details['article_url'] }}" class="btn btn-success ">Leia mais</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            {% if loop.index % 2 == 0 %}
-            </div><div class="row">
-            {% endif %}
             {% endfor %}
         </div>
 
         <div class="pagination">
             {% if page > 1 %}
-                <a href="?page={{ page - 1 }}" class="btn btn-primary">Previous</a>
+            <a href="?page={{ page - 1 }}" class="btn btn-primary">Previous</a>
             {% endif %}
-        
+
             {% if page < total_pages %}
-                <a href="?page={{ page + 1 }}" class="btn btn-primary">Next</a>
+            <a href="?page={{ page + 1 }}" class="btn btn-primary">Next</a>
             {% endif %}
-        </div>
-    </div>
-    </div>
-    <div class="modal fade" id="modal-chat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Assistente Financeiro</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body" id="chat-body">
-                    <!-- Aqui serão exibidas as respostas do assistente financeiro -->
-                </div>
-            </div>
         </div>
     </div>
 </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.chat-toggle-btn').click(function() {
-                const ticker = $(this).data('ticker');
-                let details = $(this).data('details');
-                const csrf_token = "{{ csrf_token() }}";
-                console.log(ticker);
-                if (typeof details === 'string') {
-                details = details.replace(/'/g, '"');
-                }
-                console.log(details);
-                $.ajax({
-                    type: 'POST',
-                    url: '/trade/neural',
-                    contentType: 'application/json',
-                    headers:{
-                        'X-CSRFToken': csrf_token
-                    },
-                    data: JSON.stringify({details: details}),
-                    success: function(data) {
-                        $('#chat-body').html(`
-                            <p>${data.details}</p>
-                        `);
-                        $('#modal-chat').modal('show');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Houve um problema com a operação:', error);
-                    }
-                });
-            });
-        });
-    </script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
-    integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-    ></script>
-    <script>
-        let container = document.querySelector(".animacao");
-        for (var i = 0; i <= 100; i++) {
-          let blocks = document.createElement("div");
-          blocks.classList.add("block");
-          container.appendChild(blocks);
-        }
-        
-        function circle() {
-          let circleBtn = document.querySelector(".circleBtn");
-          container.classList.toggle("circle");
-        }
-        
-        function generate() {
-          anime({
-            targets: ".block",
-            translateX: function () {
-              return anime.random(-900, 900);
-            },
-            translateY: function () {
-              return anime.random(-900, 900);
-            },
-            scale: function () {
-              return anime.random(1, 5);
-            },
-          });
-        }
-        generate();
 
-        setInterval(generate, 5000);
-    </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    let container = document.querySelector(".animacao");
+    for (var i = 0; i <= 100; i++) {
+        let blocks = document.createElement("div");
+        blocks.classList.add("block");
+        container.appendChild(blocks);
+    }
+
+    function circle() {
+        let circleBtn = document.querySelector(".circleBtn");
+        container.classList.toggle("circle");
+    }
+
+    function generate() {
+        anime({
+            targets: ".block",
+            translateX: function() {
+                return anime.random(-900, 900);
+            },
+            translateY: function() {
+                return anime.random(-900, 900);
+            },
+            scale: function() {
+                return anime.random(1, 5);
+            },
+        });
+    }
+    generate();
+
+    setInterval(generate, 5000);
+</script>
 {% endblock %}

@@ -1,5 +1,4 @@
 from flask import Blueprint, json, request, render_template, redirect, url_for, session
-import requests
 from config import Config
 from app.models.conexao_mongo import Conexao
 from app.repositories.ConexaoRepository import ConexaoRepository
@@ -13,13 +12,9 @@ from flask import jsonify
 investmentBp = Blueprint('trade', __name__, template_folder='templates/trades')
 
 cache = TTLCache(maxsize=15000, ttl=3600)  # Cache de 1 hora
-newsCache = TTLCache(maxsize=15000, ttl=3600)  # Cache de 1 hora
 @cached(cache)
 def getExchangeDetails():
     return PolygonApiService().carregarAcoes()
-
-def getNews():
-    return PolygonApiService().tickerNews()
 
 @investmentBp.route('/investment', methods=['GET', 'POST'])
 def investment():
@@ -38,19 +33,6 @@ def investment():
     items = {k: exchangeDetails[k] for k in list(exchangeDetails)[start:end]}
 
     return render_template('trades/trade.html', exchange=items, page=page, total_pages=(total_items // per_page) + 1)
-
-@investmentBp.route('/news', methods = ['GET'])
-def news():
-    news = getNews()
-
-    page = request.args.get('page', 1, type=int)
-    per_page = 5  # Número de itens por página
-
-    total_items = len(news)
-    start = (page - 1) * per_page
-    end = start + per_page
-    items = {k: news[k] for k in list(news)[start:end]}
-    return render_template('trades/news.html', news=items, page=page, total_pages=(total_items // per_page) + 1)
 
 
 @investmentBp.route('/neural', methods = ['GET', 'POST'])
